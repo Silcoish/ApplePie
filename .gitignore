@@ -162,6 +162,7 @@ ClientBin/
 *.publishsettings
 node_modules/
 bower_components/
+SFML-2.3/
 
 # RIA/Silverlight projects
 Generated_Code/
