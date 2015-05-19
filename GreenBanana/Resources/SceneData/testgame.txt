@@ -1,0 +1,1 @@
+player,Player,10,10,1,0
