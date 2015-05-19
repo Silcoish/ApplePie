@@ -11,8 +11,8 @@ public:
 	~Gameobject();
 	
 	// Methods
-	virtual void Update(float dt) = 0;
-	virtual void Render(sf::RenderWindow* window) = 0;
+	virtual void Update(float dt);
+	virtual void Render(sf::RenderWindow* window);
 
 	sf::Vector2f GetPosition() { return position; };
 	void SetPosition(sf::Vector2f newPos) { position = newPos; };
@@ -29,7 +29,7 @@ public:
 	std::string GetType() { return type; };
 	void SetType(std::string newType) { type = newType; };
 
-	//Animator GetAnimator() { return animations; };
+	Animator GetAnimator() { return animations; };
 	//Animator SetAnimator(Animator newAnimator) { animations = newAnimator; };
 
 protected:	
