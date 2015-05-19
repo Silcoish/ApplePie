@@ -79,6 +79,7 @@
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Trap.cpp" />
   </ItemGroup>
   <ItemGroup>
