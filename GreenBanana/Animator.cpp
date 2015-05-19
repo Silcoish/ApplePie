@@ -1,12 +1,22 @@
 #include "Animator.h"
+#include <iostream>
 
 void Animator::NextFrame()
 {
-	if (currentFrame == animations[currentAnimation].sprites.size())
+	if (curFrame == curAnimation->sprites.size() - 1)
 	{
-		switch (animations[currentAnimation].endEvent)
-
-
+		switch (curAnimation->endEvent)
+		{
+		case AnimationEndEvent::HoldLastFrame:
+			break;
+		case AnimationEndEvent::Loop:
+			curFrame = 0;
+			break;
+		}
+	}
+	else
+	{
+		curFrame ++;
 	}
 
 }
@@ -15,20 +25,26 @@ void Animator::Update(float dt)
 {
 	timerFrame += dt;
 
-	if (timerFrame < animations[currentAnimation].sprites[currentFrame].animTime)
+	if (timerFrame > curSprite->animTime )
 	{
-		curSprite = &animations[currentAnimation];
-	}
-	else
-	{
-		NextFrame(this);
-
+		NextFrame();
+		curSprite = &curAnimation->sprites[curFrame];
 	}
 
 }
 void Animator::SwitchAnimations(std::string& anim)
 {
-	currentAnimation = anim;
-	currentFrame = 0;
+	auto loc = animations.find(anim);
+	if (loc != animations.end())
+	{
+		curAnimation = &loc->second;
+	}
+	else
+	{
+		std::cout << "Animation Not Found: " << anim << std::endl;
+	}
+
+	curFrame = 0;
 	timerFrame = 0;
+	curSprite = &curAnimation->sprites[curFrame];
 }

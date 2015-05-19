@@ -9,6 +9,7 @@ enum AnimationEndEvent
 
 class Animation
 {
+public:
 	std::vector<Sprite> sprites;
 	AnimationEndEvent endEvent;
 
