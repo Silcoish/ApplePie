@@ -2,29 +2,37 @@
 #include <iostream>
 
 
-void Sprite::Load(std::string& fileLocation)
+ void Sprite::LoadTexture(std::string& fileLocation)
 {
-	if (!sprite->loadFromFile(fileLocation))
+	if (!texture->loadFromFile(fileLocation))
 	{
 		//Error
 		std::cout << "File Not Found: " << fileLocation << std::endl;
 
-		sprite = new sf::Texture();
-		sprite->create(32, 32);
+		texture = new sf::Texture();
+		texture->create(32, 32);
 		sf::Uint8* pixels = new sf::Uint8[32 * 32 * 4];
 
 		for (size_t i = 0; i < 4096; i += 4)
 		{
 			pixels[i] = 0;
-			pixels[i+1] = 255;
-			pixels[i+2] = 140;
-			pixels[i+3] = 255;
+			pixels[i + 1] = 255;
+			pixels[i + 2] = 140;
+			pixels[i + 3] = 255;
 		}
-		sprite->update(pixels);
+		texture->update(pixels);
 	}
 
-	width = sprite->getSize().x;
-	height = sprite->getSize().y;
-
+	width = texture->getSize().x;
+	height = texture->getSize().y;
 }
+
+ Sprite::Sprite(sf::Texture* txtr, sf::Rect<int> rect)
+ {
+	 sprite->setTexture(*txtr);
+	 sprite->setTextureRect(rect);
+
+	 width = rect.width;
+	 height = rect.height;
+ }
 
