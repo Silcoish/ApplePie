@@ -2,7 +2,7 @@
 #include <SFML/Graphics/Rect.hpp>
 
 #include "Sprite.h"
-class SpritesheetLoad
+class SpritesheetLoader
 {
 	public:
 		std::vector<Sprite*> Load(std::string filePath, int spriteWidth, int spriteHeight);

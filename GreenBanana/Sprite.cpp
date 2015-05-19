@@ -1,8 +1,26 @@
 #include "Sprite.h"
 #include <iostream>
 
+Sprite::Sprite()
+{
+	
+}
 
- void Sprite::LoadTexture(std::string& fileLocation)
+Sprite::Sprite(sf::Texture* txtr, sf::Rect<int> rect)
+{
+	sprite->setTexture(*txtr);
+	sprite->setTextureRect(rect);
+
+	width = rect.width;
+	height = rect.height;
+}
+
+Sprite::~Sprite()
+{
+
+}
+
+void Sprite::LoadTexture(std::string& fileLocation)
 {
 	if (!texture->loadFromFile(fileLocation))
 	{
@@ -26,13 +44,4 @@
 	width = texture->getSize().x;
 	height = texture->getSize().y;
 }
-
- Sprite::Sprite(sf::Texture* txtr, sf::Rect<int> rect)
- {
-	 sprite->setTexture(*txtr);
-	 sprite->setTextureRect(rect);
-
-	 width = rect.width;
-	 height = rect.height;
- }
 

@@ -9,7 +9,7 @@
 
 using namespace std::chrono;
 
-const float targetTime = 60.0f/1.0f;
+const float targetTime = 1.0f/60.0f;
 
 enum GameStates
 {
@@ -18,46 +18,9 @@ enum GameStates
     UPGRADE
 };
 
-GameStates currentState = MENU;
+GameStates currentState = GAME;
 std::map<GameStates, Scene*> scenes;
 Scene* curScene;
-
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
-
-	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
-	std::chrono::high_resolution_clock::time_point curTime = std::chrono::high_resolution_clock::now();
-    while (window.isOpen())
-    {
-		curTime = std::chrono::high_resolution_clock::now();
-		std::chrono::duration<double> dt = std::chrono::duration_cast<std::chrono::duration<double>>(curTime - lastTime);
-		if (dt.count() >= targetTime)
-		{
-			//Poll Events
-			sf::Event event;
-			while (window.pollEvent(event))
-			{
-				if (event.type == sf::Event::Closed)
-					window.close();
-			}
-
-			//Update
-			//Update((float)dt.count());
-			
-			std::cout << dt.count();
-			lastTime = std::chrono::high_resolution_clock::now();
-		}
-		
-		//Render(&window);
-     
-        window.clear();
-		
-        window.display();
-    }
-
-    return 0;
-}
 
 void ChangeScene(GameStates newState)
 {
@@ -80,4 +43,47 @@ void Update(float dt)
 void Render(sf::RenderWindow* rw)
 {
 	curScene->Render(rw);
+}
+
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
+
+	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
+	std::chrono::high_resolution_clock::time_point curTime = std::chrono::high_resolution_clock::now();
+
+	Scene* newScene = new Scene("");
+	scenes[GAME] = newScene;
+
+	ChangeScene(GAME);
+
+    while (window.isOpen())
+    {
+		curTime = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> dt = std::chrono::duration_cast<std::chrono::duration<double>>(curTime - lastTime);
+		if (dt.count() >= targetTime)
+		{
+			//Poll Events
+			sf::Event event;
+			while (window.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+					window.close();
+			}
+
+			//Update
+			Update((float)dt.count());
+			
+			std::cout << dt.count();
+			lastTime = std::chrono::high_resolution_clock::now();
+		}
+		
+		Render(&window);
+     
+        window.clear();
+		
+        window.display();
+    }
+
+    return 0;
 }
