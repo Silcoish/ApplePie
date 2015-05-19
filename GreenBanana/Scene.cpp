@@ -46,6 +46,8 @@ void Scene::Parse()
 	std::fstream in(filePath, std::ios::in);
 	std::cout << in.is_open();
 	
+
+
 	int commaCount = 0;
 	while (std::getline(in, loadData, ';'))
 	{
@@ -91,6 +93,11 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 	{
 		Player* newObject = new Player(type ,name, x, y, worldSpace, isStatic);
 		ObjectsInScene.push_back(newObject);
+	}
+	else if (type == "Text" || type == "text")
+	{
+		TextObject* text = new TextObject("text", "TextTest", 40, 40, 1, 0);
+		ObjectsInScene.push_back(text);
 	}
 	else if (type == "Coin" || type == "coin")
 	{

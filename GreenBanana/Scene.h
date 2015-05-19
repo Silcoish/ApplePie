@@ -10,6 +10,7 @@
 #include "Health.h"
 #include "Floor.h"
 #include "Coin.h"
+#include "TextObject.h"
 
 
 
