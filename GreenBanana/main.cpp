@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include <ctime>
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -6,7 +7,9 @@
 
 #include "Scene.h"
 
-const float targetTime = 1.0f/60.0f;
+using namespace std::chrono;
+
+const float targetTime = 60.0f/1.0f;
 
 enum GameStates
 {
@@ -23,13 +26,13 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
 
-	long lastTime = time(0);
-	long curTime = time(0);
+	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
+	std::chrono::high_resolution_clock::time_point curTime = std::chrono::high_resolution_clock::now();
     while (window.isOpen())
     {
-		curTime = time(0);
-		std::cout << "Window" << std::endl;
-		if (curTime - lastTime >= targetTime)
+		curTime = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> dt = std::chrono::duration_cast<std::chrono::duration<double>>(curTime - lastTime);
+		if (dt.count() >= targetTime)
 		{
 			//Poll Events
 			sf::Event event;
@@ -40,10 +43,10 @@ int main()
 			}
 
 			//Update
-			//Update((float)curFrame - lastFrame);
+			//Update((float)dt.count());
 			
-			std::cout << (float)curTime - lastTime;
-			lastTime = time(0);
+			std::cout << dt.count();
+			lastTime = std::chrono::high_resolution_clock::now();
 		}
 		
 		//Render(&window);

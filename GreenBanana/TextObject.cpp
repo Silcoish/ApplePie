@@ -1,12 +1,12 @@
-#include "TextObject.h"
-
-
-TextObject::TextObject()
-{
-
-}
-
-
-TextObject::~TextObject()
-{
-}
+//#include "TextObject.h"
+//
+//
+//TextObject::TextObject()
+//{
+//
+//}
+//
+//
+//TextObject::~TextObject()
+//{
+//}
