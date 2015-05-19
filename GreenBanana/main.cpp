@@ -5,7 +5,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 
-#include "Scene.h"
+#include "Level.h"
 
 using namespace std::chrono;
 
@@ -52,7 +52,7 @@ int main()
 	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
 	std::chrono::high_resolution_clock::time_point curTime = std::chrono::high_resolution_clock::now();
 
-	Scene* newScene = new Scene("Resources/SceneData/testgame.txt");
+	Scene* newScene = new Level("Resources/SceneData/testgame.txt");
 	scenes[GAME] = newScene;
 
 	ChangeScene(GAME);

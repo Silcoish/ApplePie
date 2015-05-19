@@ -2,16 +2,16 @@
 #include "Player.h"
 
 
-Scene::Scene(std::string filePath)
-{
-	SetFilePath(filePath);
-	Parse();
-}
-
-
-Scene::~Scene()
-{
-}
+//Scene::Scene(std::string filePath)
+//{
+//	SetFilePath(filePath);
+//	Parse();
+//}
+//
+//
+//Scene::~Scene()
+//{
+//}
 
 void Scene::Update(float dt)
 {

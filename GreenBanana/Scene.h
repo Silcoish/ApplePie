@@ -17,9 +17,6 @@
 class Scene
 {
 public:
-	Scene(std::string filePath);
-	~Scene();
-
 	std::vector<Gameobject*> ObjectsInScene;
 
 	void SceneLogic();
