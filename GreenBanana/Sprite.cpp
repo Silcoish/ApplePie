@@ -27,3 +27,4 @@ void Sprite::Load(std::string& fileLocation)
 	height = sprite->getSize().y;
 
 }
+

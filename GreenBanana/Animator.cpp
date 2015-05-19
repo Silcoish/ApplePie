@@ -28,7 +28,7 @@ void Animator::Update(float dt)
 	if (timerFrame > curSprite->animTime )
 	{
 		NextFrame();
-		curSprite = &curAnimation->sprites[curFrame];
+		curSprite = curAnimation->sprites[curFrame];
 	}
 
 }
@@ -46,5 +46,5 @@ void Animator::SwitchAnimations(std::string& anim)
 
 	curFrame = 0;
 	timerFrame = 0;
-	curSprite = &curAnimation->sprites[curFrame];
+	curSprite = curAnimation->sprites[curFrame];
 }

@@ -10,7 +10,7 @@ enum AnimationEndEvent
 class Animation
 {
 public:
-	std::vector<Sprite> sprites;
+	std::vector<Sprite*> sprites;
 	AnimationEndEvent endEvent;
 
 	std::string nextAnimation;
