@@ -27,6 +27,7 @@ int main()
 	long curFrame = time(0);
     while (window.isOpen())
     {
+		curFrame = time(0);
 		if (curFrame - lastFrame >= targetTime)
 		{
 			//Poll Events
@@ -38,12 +39,13 @@ int main()
 			}
 
 			//Update
-			Update((float)curFrame - lastFrame);
+			//Update((float)curFrame - lastFrame);
+			
 			std::cout << (float)curFrame - lastFrame;
+			lastFrame = time(0);
 		}
 		
-		lastFrame = time(0);
-		Render(&window);
+		//Render(&window);
      
         window.clear();
 		
