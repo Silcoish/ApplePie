@@ -12,5 +12,5 @@ public:
 
 	void Update(float dt);
 	void NextFrame();
-	void SwitchAnimations(std::string& anim);
+	void SwitchAnimations(std::string anim);
 };

@@ -1,3 +1,5 @@
+#ifndef SPRITE_H
+#define SPRITE_H
 #include <SFML/Graphics.hpp>
 #include  <SFML/Graphics/Rect.hpp>
 
@@ -14,3 +16,5 @@ class Sprite
 		~Sprite();
 		void LoadTexture(std::string& fileLocation);
 };
+
+#endif

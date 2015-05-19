@@ -7,9 +7,9 @@ void Animator::NextFrame()
 	{
 		switch (curAnimation->endEvent)
 		{
-		case AnimationEndEvent::HoldLastFrame:
+		case Animation::AnimationEndEvent::HoldLastFrame:
 			break;
-		case AnimationEndEvent::Loop:
+		case Animation::AnimationEndEvent::Loop:
 			curFrame = 0;
 			break;
 		}
@@ -32,7 +32,7 @@ void Animator::Update(float dt)
 	}
 
 }
-void Animator::SwitchAnimations(std::string& anim)
+void Animator::SwitchAnimations(std::string anim)
 {
 	auto loc = animations.find(anim);
 	if (loc != animations.end())

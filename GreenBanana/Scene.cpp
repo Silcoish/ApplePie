@@ -1,9 +1,11 @@
 #include "Scene.h"
+#include "Player.h"
 
 
 Scene::Scene(std::string filePath)
 {
 	SetFilePath(filePath);
+	Parse();
 }
 
 
@@ -42,6 +44,8 @@ void Scene::Parse()
 	float x, y;
 	bool worldspace, isStatic;
 	std::fstream in(filePath, std::ios::in);
+	std::cout << in.is_open();
+	
 	int commaCount = 0;
 	while (std::getline(in, loadData, ';'))
 	{
@@ -85,20 +89,20 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 {
 	if (type == "Player" || type == "player")
 	{
-		Floor* newObject = new Floor(type ,name, x, y, worldSpace, isStatic);
+		Player* newObject = new Player(type ,name, x, y, worldSpace, isStatic);
 		ObjectsInScene.push_back(newObject);
 	}
 	else if (type == "Coin" || type == "coin")
 	{
-		Coin* newObject = new Coin(type, name, x, y, worldSpace, isStatic);
+		//Coin* newObject = new Coin(type, name, x, y, worldSpace, isStatic);
 	}
 	else if (type == "Trap" || type == "Trap")
 	{
-		Trap* newObject = new Trap(type, name, x, y, worldSpace, isStatic);
+		//Trap* newObject = new Trap(type, name, x, y, worldSpace, isStatic);
 	}
 	else if (type == "Health" || type == "health")
 	{
-		Health* newObject = new Health(type, name, x, y, worldSpace, isStatic);
+		//Health* newObject = new Health(type, name, x, y, worldSpace, isStatic);
 	}
 
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "Animator.h"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics.hpp>
@@ -6,13 +7,13 @@
 class Gameobject
 {
 public:
-	Gameobject();
-	Gameobject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
-	~Gameobject();
+	//Gameobject();
+	//Gameobject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
+	//~Gameobject();
 	
 	// Methods
-	virtual void Update(float dt);
-	virtual void Render(sf::RenderWindow* window);
+	virtual void Update(float dt) = 0;
+	virtual void Render(sf::RenderWindow* window) = 0;
 
 	sf::Vector2f GetPosition() { return position; };
 	void SetPosition(sf::Vector2f newPos) { position = newPos; };

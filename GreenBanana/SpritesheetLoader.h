@@ -1,3 +1,6 @@
+#ifndef SPRITESHEET_H
+#define SPRITESHEET_H
+
 #include <vector>
 #include <SFML/Graphics/Rect.hpp>
 
@@ -7,3 +10,5 @@ class SpritesheetLoader
 	public:
 		std::vector<Sprite*> Load(std::string filePath, int spriteWidth, int spriteHeight);
 };
+
+#endif

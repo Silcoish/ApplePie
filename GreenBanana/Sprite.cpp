@@ -3,11 +3,15 @@
 
 Sprite::Sprite()
 {
-	
+	texture = new sf::Texture();
+	sprite = new sf::Sprite();
 }
 
 Sprite::Sprite(sf::Texture* txtr, sf::Rect<int> rect)
 {
+	texture = new sf::Texture();
+	sprite = new sf::Sprite();
+
 	sprite->setTexture(*txtr);
 	sprite->setTextureRect(rect);
 
