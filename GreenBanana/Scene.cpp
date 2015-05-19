@@ -37,10 +37,68 @@ void Scene::Unload()
 
 void Scene::Parse()
 {
-	//TODO:
+	std::string loadData;
+	std::string type, name;
+	float x, y;
+	bool worldspace, isStatic;
+	std::fstream in(filePath, std::ios::in);
+	int commaCount = 0;
+	while (std::getline(in, loadData, ';'))
+	{
+		std::istringstream objectLine(loadData);
+		std::string objectValue;
+		while (std::getline(objectLine, objectValue, ','))
+		{
+			if (commaCount == 0)
+				type = objectValue;
+			
+			if (commaCount == 1)
+				name = objectValue;
+			
+			if (commaCount == 2)
+				x = std::stof(objectValue);
+
+			if (commaCount == 3)
+				y = std::stof(objectValue);
+
+			//worldspace?
+			if (commaCount == 4)
+				if (std::stoi(objectValue) == 1)
+					worldspace = true;
+				else
+					worldspace = false;
+			// is Static?
+			if (commaCount == 5)
+				if (std::stoi(objectValue) == 1)
+					isStatic = true;
+				else
+					isStatic = false;
+
+			commaCount++;
+		}
+			CreateObject(type, name, x, y, worldspace, isStatic);
+	}
+
 }
 
 void Scene::CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic)
 {
-	//TODO:
+	if (type == "Player" || type == "player")
+	{
+		Floor* newObject = new Floor(type ,name, x, y, worldSpace, isStatic);
+		ObjectsInScene.push_back(newObject);
+	}
+	else if (type == "Coin" || type == "coin")
+	{
+		Coin* newObject = new Coin(type, name, x, y, worldSpace, isStatic);
+	}
+	else if (type == "Trap" || type == "Trap")
+	{
+		Trap* newObject = new Trap(type, name, x, y, worldSpace, isStatic);
+	}
+	else if (type == "Health" || type == "health")
+	{
+		Health* newObject = new Health(type, name, x, y, worldSpace, isStatic);
+	}
+
 }

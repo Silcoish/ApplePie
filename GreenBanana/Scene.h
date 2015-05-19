@@ -1,7 +1,17 @@
 #pragma once
 #include <map>
+#include <fstream>
+#include <sstream>
 #include <SFML/Graphics.hpp>
 #include "Gameobject.h"
+#include "Player.h"
+#include "Trap.h"
+#include "Health.h"
+#include "Floor.h"
+#include "Coin.h"
+
+
+
 class Scene
 {
 public:
@@ -10,7 +20,8 @@ public:
 
 	std::vector<Gameobject*> ObjectsInScene;
 
-	virtual void SceneLogic();
+	void SceneLogic();
+
 	void Update(float dt);
 	void Render(sf::RenderWindow* window);
 	void Parse();
