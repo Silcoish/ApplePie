@@ -10,9 +10,9 @@ public:
 
 	std::map<std::string, Gameobject> ObjectsInScene;
 
-	virtual void Update(float dt);
-	virtual void Render(sf::RenderWindow* window);
 	virtual void SceneLogic();
+	void Update(float dt);
+	void Render(sf::RenderWindow* window);
 	void Parse();
 	void CreateObject();
 	void Unload();
