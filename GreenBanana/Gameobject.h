@@ -29,7 +29,7 @@ public:
 	std::string GetType() { return type; };
 	void SetType(std::string newType) { type = newType; };
 
-	//Animator GetAnimator() { return animations; };
+	Animator GetAnimator() { return animations; };
 	//Animator SetAnimator(Animator newAnimator) { animations = newAnimator; };
 
 protected:	

@@ -8,13 +8,13 @@ public:
 	Scene(std::string filePath);
 	~Scene();
 
-	std::map<std::string, Gameobject> ObjectsInScene;
+	std::vector<Gameobject*> ObjectsInScene;
 
 	virtual void SceneLogic();
 	void Update(float dt);
 	void Render(sf::RenderWindow* window);
 	void Parse();
-	void CreateObject();
+	void CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
 	void Unload();
 
 	std::string GetName() { return name; };
