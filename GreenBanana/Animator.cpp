@@ -1,5 +1,16 @@
 #include "Animator.h"
 
+void Animator::NextFrame()
+{
+	if (currentFrame == animations[currentAnimation].sprites.size())
+	{
+		switch (animations[currentAnimation].endEvent)
+
+
+	}
+
+}
+
 void Animator::Update(float dt)
 {
 	timerFrame += dt;
@@ -10,7 +21,7 @@ void Animator::Update(float dt)
 	}
 	else
 	{
-		//if ()
+		NextFrame(this);
 
 	}
 
