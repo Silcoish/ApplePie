@@ -23,12 +23,13 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
 
-	long lastFrame = time(0);
-	long curFrame = time(0);
+	long lastTime = time(0);
+	long curTime = time(0);
     while (window.isOpen())
     {
-		curFrame = time(0);
-		if (curFrame - lastFrame >= targetTime)
+		curTime = time(0);
+		std::cout << "Window" << std::endl;
+		if (curTime - lastTime >= targetTime)
 		{
 			//Poll Events
 			sf::Event event;
@@ -41,8 +42,8 @@ int main()
 			//Update
 			//Update((float)curFrame - lastFrame);
 			
-			std::cout << (float)curFrame - lastFrame;
-			lastFrame = time(0);
+			std::cout << (float)curTime - lastTime;
+			lastTime = time(0);
 		}
 		
 		//Render(&window);
