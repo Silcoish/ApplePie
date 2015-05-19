@@ -15,13 +15,12 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	walk.endEvent = Animation::AnimationEndEvent::Loop;
 	animations.animations["walk"] = walk;
 	animations.SwitchAnimations("walk");
-	
 
+	collider.size = sf::Vector2f(160,224);
 }
 
 Player::~Player()
 {
-
 
 }
 
@@ -34,4 +33,9 @@ void Player::Update(float dt)
 void Player::Render(sf::RenderWindow* window)
 {
 	window->draw(*animations.curSprite->sprite);
+}
+
+void Player::CheckCollisions()
+{
+	
 }

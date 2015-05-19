@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Animator.h"
+#include "BoxCollider.h"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -39,7 +40,7 @@ protected:
 	std::string type;
 	sf::Vector2f position;
 	Animator animations;
-	//BoxCollider collider;
+	BoxCollider collider;
 	bool isStatic;
 	bool worldSpace;
 };
