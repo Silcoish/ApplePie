@@ -52,7 +52,7 @@ int main()
 	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
 	std::chrono::high_resolution_clock::time_point curTime = std::chrono::high_resolution_clock::now();
 
-	Scene* newScene = new Scene("");
+	Scene* newScene = new Scene("Resources/SceneData/testgame.txt");
 	scenes[GAME] = newScene;
 
 	ChangeScene(GAME);
@@ -74,13 +74,13 @@ int main()
 			//Update
 			Update((float)dt.count());
 			
-			std::cout << dt.count();
+			//std::cout << dt.count();
 			lastTime = std::chrono::high_resolution_clock::now();
 		}
 		
-		Render(&window);
-     
         window.clear();
+     
+		Render(&window);
 		
         window.display();
     }
