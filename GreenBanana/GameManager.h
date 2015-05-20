@@ -10,6 +10,7 @@ class GameManager
 public:
 	static GameManager &shared_instance() { static GameManager game; return game; }
 	UpgradeData upgradeData;
+	bool editor = true;
 	sf::Vector2f cameraPos;
 	sf::RenderWindow* rw;
 

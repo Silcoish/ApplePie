@@ -6,7 +6,6 @@
 class Level : public Scene
 {
 private:
-	bool editor = true;
 	Gameobject* currentObject;
 
 public:
