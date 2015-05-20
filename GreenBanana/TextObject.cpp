@@ -14,6 +14,7 @@ TextObject::TextObject(std::string type, std::string name, float x, float y, boo
 		//Failed to load font	
 	}
 	text.setFont(font);
+	text.setString("Press 1 to Jason");
 }
 
 

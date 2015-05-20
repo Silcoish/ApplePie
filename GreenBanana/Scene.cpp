@@ -78,8 +78,17 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 {
 	if (type == "Player" || type == "player")
 	{
+<<<<<<< HEAD
 		Player* newObject = new Player(type ,name, x, y, worldSpace, isStatic);
 		newObject->SetCurrentScene(this);
+=======
+		Player* newObject = new Player(type, name, x, y, worldSpace, isStatic);
+		objectsInScene.push_back(newObject);
+	}
+	else if (type == "Floor" || type == "floor")
+	{
+		Floor* newObject = new Floor(type, name, x, y, worldSpace, isStatic);
+>>>>>>> b23fe007faf1973b37b2dd77c55ff10db9be67bc
 		objectsInScene.push_back(newObject);
 	}
 	else if (type == "Coin" || type == "coin")
