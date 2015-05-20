@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <vector>
+#include <math.h>
 
 #include "Level.h"
 
@@ -48,6 +49,15 @@ void Render(sf::RenderWindow* rw)
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
+	sf::View camera;
+
+	camera.setSize(sf::Vector2f(720, 480));
+	camera.setCenter(sf::Vector2f(0, 0));
+
+	window.setView(camera);
+
+
+
 
 	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
 	std::chrono::high_resolution_clock::time_point curTime = std::chrono::high_resolution_clock::now();
@@ -56,6 +66,8 @@ int main()
 	scenes[GAME] = newScene;
 
 	ChangeScene(GAME);
+
+	float timer = 0;
 
     while (window.isOpen())
     {
@@ -77,6 +89,13 @@ int main()
 			//std::cout << dt.count();
 			lastTime = std::chrono::high_resolution_clock::now();
 		}
+
+		timer += dt.count()/10;
+
+		camera.setCenter(sf::Vector2f(sin(timer)* 100, 0));
+
+
+		window.setView(camera);
 		
         window.clear();
      

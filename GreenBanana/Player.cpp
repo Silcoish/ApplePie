@@ -32,5 +32,6 @@ void Player::Update(float dt)
 
 void Player::Render(sf::RenderWindow* window)
 {
+	animations.curSprite->sprite->setPosition (GetPosition());
 	window->draw(*animations.curSprite->sprite);
 }
