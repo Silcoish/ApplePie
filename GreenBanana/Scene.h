@@ -35,6 +35,7 @@ public:
 	void SetFilePath(std::string newPath) { filePath = newPath; };
 
 	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions);
+	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions, sf::Vector2f offset);
 
 protected:
 	std::string name;

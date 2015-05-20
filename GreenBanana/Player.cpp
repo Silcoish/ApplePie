@@ -28,16 +28,33 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
-	//std::cout << "Update" << std::endl;
 	animations.Update(dt);
-
 	collider->center = position + sf::Vector2f(animations.curSprite->width / 2, animations.curSprite->height / 2);
+	
+	//Input
+	//Movement
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		velocity.x = -walkSpeed * dt;
 
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		velocity.x = walkSpeed * dt;
+	}
+	//Jump
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+
+
+	}
+
+	
 	//Collision Check
 	std::vector<Gameobject*> allCollisions;
-	bool temp = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions);
+	bool hitVertical = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, sf::Vector2f(0, velocity.y));
+	bool hitHorzontal = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, sf::Vector2f(0, velocity.y));
 
-	std::cout << allCollisions.size() << std::endl;
 
 	
 

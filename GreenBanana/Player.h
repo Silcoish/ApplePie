@@ -9,6 +9,14 @@ public:
 	~Player();
 
 	void Update(float dt);
+
+private:
+	//Player Variables
+	sf::Vector2f velocity;
+
+	float walkSpeed = 100;
+
+	bool isJump = false;
 };
 
 #endif

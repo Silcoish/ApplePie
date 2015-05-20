@@ -109,6 +109,7 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allCollisions)
 {
 	BoxCollider* colb;
+	bool hitSomething = false;
 
 	for (size_t i = 0; i < objectsInScene.size(); i++)
 	{
@@ -121,16 +122,42 @@ bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allC
 			if (distx < (cola->size.x / 2 + colb->size.x / 2) && disty < (cola->size.y / 2 + colb->size.y / 2))
 			{
 				out_allCollisions.push_back(objectsInScene[i]);
+				if (!colb->isTrigger)
+				{
+					hitSomething = true;
+				}
 			}
-		}
-		else
-		{
-
-		//	std::cout << "sothing wrong" << std::endl;
 		}
 	}
 
 	return out_allCollisions.size() != 0;
+}
+
+bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allCollisions, sf::Vector2f offset)
+{
+	BoxCollider* colb;
+	bool hitSomething = false;
+
+	for (size_t i = 0; i < objectsInScene.size(); i++)
+	{
+		colb = objectsInScene[i]->GetCollider();
+		if (cola != colb)
+		{
+			float distx = abs(colb->center.x - cola->center.x + offset.x);
+			float disty = abs(colb->center.y - cola->center.y + offset.y);
+
+			if (distx < (cola->size.x / 2 + colb->size.x / 2) && disty < (cola->size.y / 2 + colb->size.y / 2))
+			{
+				out_allCollisions.push_back(objectsInScene[i]);
+				if (!colb->isTrigger)
+				{
+					hitSomething = true;
+				}
+			}
+		}
+	}
+
+	return hitSomething;
 }
 
 void Scene::SceneLogic(float dt)
