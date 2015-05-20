@@ -48,19 +48,35 @@ void Player::Update(float dt)
 		velocity.x = 0;
 	}
 	//Jump
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if (timerJump < jumpTime && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		velocity.y = -1000 * dt;
+		velocity.y = -1500 * dt;
+		isFalling = false;
+		isGrounded = false;
 	}
 	else
 	{
-		velocity.y = 1000 * dt;
+		isFalling = true;
+		velocity.y = 1500 * dt;
 	}
 
+	if (!isGrounded)
+	{
+		
+		timerJump += dt;
+	}
+
+	
 
 	//Collision Check
 	std::vector<Gameobject*> allCollisions;
 	bool collision = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, velocity);
+
+	if (velocity.y == 0 && isFalling)
+	{
+		timerJump = 0;
+		isGrounded = true;
+	}
 
 
 	position += velocity;

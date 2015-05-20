@@ -332,20 +332,22 @@ bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allC
 				{
 					//std::cout << "colHorizontal: " << colHorizontal << std::endl;
 					//Check to see if hit directly on the corner
-					if (!colHorizontal && !colVertical)//Direct hit on corner
-					{
-						//Move Horizontal Only
-						velocity.y = colb->center.y - cola->center.y;
-						if (velocity.y > 0)
-						{
-							velocity.y -= ((cola->size.y / 2) + (colb->size.y / 2));
-						}
-						else
-						{
-							velocity.y += ((cola->size.y / 2) + (colb->size.y / 2));
-						}
-					}
-					else if (colVertical)
+					//if (!colHorizontal && !colVertical)//Direct hit on corner
+					//{
+					//	//Move Vertically Only
+					//	velocity.x = colb->center.x - cola->center.x;
+					//	if (velocity.x > 0)
+					//	{
+					//		velocity.x -= ((cola->size.x / 2) + (colb->size.x / 2));
+					//	}
+					//	else
+					//	{
+					//		velocity.x += ((cola->size.x / 2) + (colb->size.x / 2));
+					//	}
+					//	std::cout << "both: " << std::endl;
+					//}
+					//else 
+					if (colVertical)
 					{
 						
 						//Move Horizontal Only
@@ -358,6 +360,7 @@ bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allC
 						{
 							velocity.y += ((cola->size.y / 2) + (colb->size.y / 2));
 						}
+						std::cout << "vert: " << std::endl;
 					}
 					else if (colHorizontal)
 					{
@@ -371,6 +374,7 @@ bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allC
 						{
 							velocity.x += ((cola->size.x / 2) + (colb->size.x / 2));
 						}
+						std::cout << "horz: " << std::endl;
 					}
 					hitSomething = true;
 				}
