@@ -42,6 +42,10 @@ void Player::Update(float dt)
 	{
 		velocity.x = walkSpeed * dt;
 	}
+	else
+	{
+		velocity.x = 0;
+	}
 	//Jump
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
@@ -49,13 +53,16 @@ void Player::Update(float dt)
 
 	}
 
-	
 	//Collision Check
 	std::vector<Gameobject*> allCollisions;
-	bool hitVertical = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, sf::Vector2f(0, velocity.y));
-	bool hitHorzontal = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, sf::Vector2f(0, velocity.y));
+	bool collision = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, velocity);
 
+	if (collision)
+	{
+		std::cout << "Collision" << std::endl;
+	}
 
-	
+	position += velocity;
+
 
 }

@@ -133,7 +133,7 @@ bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allC
 	return out_allCollisions.size() != 0;
 }
 
-bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allCollisions, sf::Vector2f offset)
+bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allCollisions, sf::Vector2f& velocity)
 {
 	BoxCollider* colb;
 	bool hitSomething = false;
@@ -143,17 +143,44 @@ bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allC
 		colb = objectsInScene[i]->GetCollider();
 		if (cola != colb)
 		{
-			float distx = abs(colb->center.x - cola->center.x + offset.x);
-			float disty = abs(colb->center.y - cola->center.y + offset.y);
+			float distx = abs(colb->center.x - cola->center.x);
+			float disty = abs(colb->center.y - cola->center.y);
 
-			if (distx < (cola->size.x / 2 + colb->size.x / 2) && disty < (cola->size.y / 2 + colb->size.y / 2))
+			bool colDiagonal = distx + velocity.x < (cola->size.x / 2 + colb->size.x / 2) && disty + velocity.y < (cola->size.y / 2 + colb->size.y / 2); //true if Collision when moved diagonal
+			bool colVertical = distx < (cola->size.x / 2 + colb->size.x / 2) && disty + velocity.y < (cola->size.y / 2 + colb->size.y / 2); //true if Collision when moved Vertcally only
+			bool colHorizontal = distx + velocity.x < (cola->size.x / 2 + colb->size.x / 2) && disty < (cola->size.y / 2 + colb->size.y / 2); //true if Collision when moved Horizontal only
+
+			//std::cout << "colDiagonal: " << colDiagonal << std::endl;
+			//std::cout << "colVertical: " << colVertical << std::endl;
+			
+
+			//Check Diagonal
+			if (colDiagonal)
 			{
 				out_allCollisions.push_back(objectsInScene[i]);
 				if (!colb->isTrigger)
 				{
+					//Check to see if hit directly on the corner
+					if (colHorizontal && colVertical)//Direct hit on corner
+					{
+						//Move Horizontal Only
+						velocity.y = colb->center.y - (cola->size.y / 2 + colb->size.y / 2) - cola->center.y;
+					}
+					else if (colVertical)
+					{
+						std::cout << "colHorizontal: " << colHorizontal << std::endl;
+						//Move Horizontal Only
+						velocity.y = 0;// colb->center.y - (cola->size.y / 2 + colb->size.y / 2) - cola->center.y;
+					}
+					else if (colHorizontal)
+					{
+						//Move Vertically Only
+						velocity.x = colb->center.x - (cola->size.x / 2 + colb->size.x / 2) - cola->center.x;
+					}
 					hitSomething = true;
 				}
 			}
+			
 		}
 	}
 

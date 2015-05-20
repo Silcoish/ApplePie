@@ -14,7 +14,7 @@ private:
 	//Player Variables
 	sf::Vector2f velocity;
 
-	float walkSpeed = 100;
+	float walkSpeed = 200;
 
 	bool isJump = false;
 };
