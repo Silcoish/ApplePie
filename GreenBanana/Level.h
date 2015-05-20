@@ -7,7 +7,7 @@
 class Level : public Scene
 {
 private:
-	Gameobject* currentObject;
+	Gameobject* currentObject = NULL;
 
 public:
 	Level();

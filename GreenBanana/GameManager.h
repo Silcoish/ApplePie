@@ -11,6 +11,7 @@ public:
 	static GameManager &shared_instance() { static GameManager game; return game; }
 	UpgradeData upgradeData;
 	bool editor = true;
+	float cameraMoveSpeed = 200.0f;
 	sf::Vector2f cameraPos;
 	sf::RenderWindow* rw;
 
