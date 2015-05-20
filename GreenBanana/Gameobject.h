@@ -1,6 +1,7 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 #include <iostream>
+#include <sstream>
 #include "Animator.h"
 #include "BoxCollider.h"
 #include <SFML/System/Vector2.hpp>
@@ -33,6 +34,8 @@ public:
 	void SetType(std::string newType) { type = newType; };
 
 	Animator GetAnimator() { return animations; };
+
+	std::string Serialize();
 	//Animator SetAnimator(Animator newAnimator) { animations = newAnimator; };
 
 protected:	
