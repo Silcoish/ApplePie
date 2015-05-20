@@ -2,3 +2,15 @@ player,Player,10,10,1,0
 player,player,-220.999,-186,1,0
 player,player,271.346,-183,1,0
 player,player,173.337,56,1,0
+player,player,-8.67082,-223,1,0
+player,player,-361.545,31,1,0
+player,player,-451.409,-216,1,0
+player,player,-134.816,29,1,0
+player,player,-273.07,-153,1,0
+player,player,82.5207,-177,1,0
+floor,floor,-265.664,122,1,0
+floor,floor,-160.537,123,1,0
+floor,floor,-45.2862,127,1,0
+floor,floor,67.2882,122,1,0
+floor,floor,178.696,125,1,0
+floor,floor,300.094,128,1,0
