@@ -41,5 +41,5 @@ void Player::Render(sf::RenderWindow* window)
 	window->draw(*animations.curSprite->sprite);
 	
 	sf::Vertex line[] = { sf::Vertex(sf::Vector2f(collider.center.x - collider.size.x / 2, collider.center.y - collider.size.y / 2)), sf::Vertex(sf::Vector2f(collider.center.x + collider.size.x / 2, collider.center.y - collider.size.y / 2)), sf::Vertex(sf::Vector2f(collider.center.x + collider.size.x / 2, collider.center.y + collider.size.y / 2)), sf::Vertex(sf::Vector2f(collider.center.x - collider.size.x / 2, collider.center.y + collider.size.y / 2)), sf::Vertex(sf::Vector2f(collider.center.x - collider.size.x / 2, collider.center.y - collider.size.y / 2)) };
-	window->draw(line, 2, sf::Lines);
+	window->draw(line, 4, sf::Lines);
 }

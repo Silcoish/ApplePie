@@ -20,7 +20,7 @@ class Scene
 public:
 	std::vector<Gameobject*> objectsInScene;
 
-	virtual void SceneLogic();
+	virtual void SceneLogic(float dt);
 
 	virtual void Update(float dt) = 0;
 	virtual void Render(sf::RenderWindow* window) = 0;

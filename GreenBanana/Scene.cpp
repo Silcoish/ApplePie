@@ -111,3 +111,8 @@ std::vector<Gameobject*>* Scene::CollisionCheck(BoxCollider col)
 	}
 	return nullptr;
 }
+
+void Scene::SceneLogic(float dt)
+{
+
+}
