@@ -96,6 +96,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Gameobject.h" />
     <ClInclude Include="Health.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />

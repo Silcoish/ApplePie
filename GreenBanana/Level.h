@@ -1,20 +1,16 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include "Scene.h"
-#include "GameManager.h"
 #include <sstream>
 
 class Level : public Scene
 {
-private:
-	Gameobject* currentObject = NULL;
-
 public:
 	Level();
 	Level(std::string filePath);
 	~Level();
-	void Update(float dt);
-	void Render(sf::RenderWindow* rw);
+	//void Render(sf::RenderWindow* rw);
+	void SceneLogic(float dt);
 };
 
 #endif

@@ -12,6 +12,7 @@
 //#include "Floor.h"
 //#include "Coin.h"
 #include "TextObject.h"
+#include "InputManager.h"
 
 
 
@@ -20,10 +21,10 @@ class Scene
 public:
 	std::vector<Gameobject*> objectsInScene;
 
-	virtual void SceneLogic(float dt);
+	void Update(float dt);//General Data that all scenes run
+	virtual void Render(sf::RenderWindow* rw);//Render that all scenes run
+	virtual void SceneLogic(float dt) = 0; //Individual Scene Updates
 
-	virtual void Update(float dt) = 0;
-	virtual void Render(sf::RenderWindow* window) = 0;
 	void Parse();
 	void CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
 	void Unload();
@@ -40,7 +41,9 @@ public:
 protected:
 	std::string name;
 	std::string filePath;
-	
+private:
+	Gameobject* currentObject = NULL;
+	InputMapper* inputManager = &InputMapper::shared_instance(); 
 };
 
 #endif

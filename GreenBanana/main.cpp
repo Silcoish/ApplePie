@@ -7,6 +7,7 @@
 #include <math.h>
 #include "GameManager.h"
 #include "Level.h"
+#include "InputManager.h"
 
 using namespace std::chrono;
 
@@ -54,9 +55,12 @@ int main()
 
 	sf::View camera;
 
+	//Set Up Camera
 	camera.setSize(sf::Vector2f(720, 480));
 	camera.setCenter(sf::Vector2f(0, 0));
+	camera.zoom(2);
 
+	//Set Camera to Window
 	window.setView(camera);
 
 
@@ -74,6 +78,8 @@ int main()
 
     while (window.isOpen())
     {
+
+
 		curTime = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> dt = std::chrono::duration_cast<std::chrono::duration<double>>(curTime - lastTime);
 		if (dt.count() >= targetTime)
@@ -85,6 +91,15 @@ int main()
 				if (event.type == sf::Event::Closed)
 					window.close();
 			}
+
+			//InputManager Set Previous and Current
+			InputMapper::shared_instance().prevState = InputMapper::shared_instance().curState;
+			//Set Each KeyPress
+			InputMapper::shared_instance().curState["LShift"] =			sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
+			InputMapper::shared_instance().curState["MouseLeft"] =		sf::Mouse::isButtonPressed(sf::Mouse::Left);
+			InputMapper::shared_instance().curState["S"] =				sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+			InputMapper::shared_instance().curState["LControl"] =		sf::Keyboard::isKeyPressed(sf::Keyboard::LControl);
+
 
 			//Update
 			Update((float)dt.count());
@@ -102,6 +117,9 @@ int main()
 		Render(&window);
 		
         window.display();
+
+
+		
     }
 
     return 0;

@@ -1,4 +1,5 @@
 #include "Gameobject.h"
+#include "GameManager.h"
 
 Gameobject::~Gameobject()
 {
@@ -32,6 +33,11 @@ sf::Vector2f Gameobject::GetSize()
 	}
 
 	return sf::Vector2f(0, 0);
+}
+
+void Gameobject::Update(float dt)
+{
+	
 }
 
 void Gameobject::Render(sf::RenderWindow* rw)

@@ -14,6 +14,9 @@ Floor::Floor(std::string type, std::string name, float x, float y, bool worldSpa
 	SpritesheetLoader loader;
 	idle.sprites = loader.Load("Resources/Objects/Environment/ChocBlockSmall.png", 133, 122);
 	idle.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
+	idle.sprites[0]->sprite->setScale(sf::Vector2f((130.0 / 133.0), (120.0 / 122.0)));
+	idle.sprites[0]->width = 130;
+	idle.sprites[0]->height = 120;
 	animations.animations["idle"] = idle;
 	animations.SwitchAnimations("idle");
 

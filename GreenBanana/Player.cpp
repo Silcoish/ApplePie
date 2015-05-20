@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Scene.h"
+#include "GameManager.h"
 
 
 Player::Player(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic)
@@ -63,6 +64,10 @@ void Player::Update(float dt)
 
 
 	position += velocity;
+
+
+	//SetCamPos
+	GameManager::shared_instance().cameraPos = (position + sf::Vector2f(300,-100));
 
 
 }
