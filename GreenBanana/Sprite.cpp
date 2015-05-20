@@ -24,7 +24,7 @@ Sprite::~Sprite()
 
 }
 
-void Sprite::LoadTexture(std::string& fileLocation)
+void Sprite::LoadTexture(std::string fileLocation)
 {
 	if (!texture->loadFromFile(fileLocation))
 	{
