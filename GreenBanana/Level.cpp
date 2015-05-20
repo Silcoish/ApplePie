@@ -1,5 +1,7 @@
 #include "Level.h"
 #include "Player.h"
+#include "Floor.h"
+#include "TextObject.h"
 
 Level::Level(std::string filePath)
 {
@@ -18,18 +20,40 @@ void Level::Update(float dt)
 	if (GameManager::shared_instance().editor)
 	{
 		sf::Vector2f pos = GameManager::shared_instance().rw->mapPixelToCoords(sf::Mouse::getPosition(*GameManager::shared_instance().rw));
-		if (currentObject != nullptr) currentObject->SetPosition(sf::Vector2f(pos.x - currentObject->GetAnimator().curSprite->width / 2, pos.y - currentObject->GetAnimator().curSprite->height / 2));
+		if (currentObject != nullptr) currentObject->SetPosition(sf::Vector2f(pos.x - currentObject->GetSize().x / 2, pos.y - currentObject->GetSize().y / 2));
 		
 		//Key pressed, make new objects
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 		{
-			if(currentObject == nullptr)
+			if (currentObject == nullptr)
 			{
-				std::cout << objectsInScene.size() << std::endl;
-				Player* player = new Player("player", "player", pos.x-80, pos.y-112, 1, 0);
+				Player* player = new Player("player", "player", pos.x - 80, pos.y - 112, 1, 0);
 				player->SetCurrentScene(this);
 				currentObject = player;
 				objectsInScene.push_back(player);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+		{
+			if (currentObject == nullptr)
+			{
+				Floor* floor = new Floor("floor", "floor", pos.x, pos.y, 1, 1);
+				floor->SetCurrentScene(this);
+				currentObject = floor;
+				objectsInScene.push_back(floor);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+		{
+			if (currentObject == nullptr)
+			{
+				TextObject* text = new TextObject("text", "text", pos.x, pos.y, 1, 1);
+				text->SetCurrentScene(this);
+				text->text.setString("working");
+				currentObject = text;
+				objectsInScene.push_back(text);
 			}
 		}
 

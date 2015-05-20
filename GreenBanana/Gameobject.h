@@ -15,11 +15,11 @@ class Gameobject
 public:
 	//Gameobject();
 	//Gameobject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
-	//~Gameobject();
+	virtual ~Gameobject();
 	
 	// Methods
 	virtual void Update(float dt) = 0;
-	virtual void Render(sf::RenderWindow* window) = 0;
+	virtual void Render(sf::RenderWindow* rw);
 
 	sf::Vector2f GetPosition() { return position; };
 	void SetPosition(sf::Vector2f newPos) { position = newPos; };
@@ -44,6 +44,7 @@ public:
 	void SetCurrentScene(Scene* sc){ curScene = sc; }
 
 	std::string Serialize();
+	sf::Vector2f GetSize();
 	//Animator SetAnimator(Animator newAnimator) { animations = newAnimator; };
 protected:	
 	// Variables

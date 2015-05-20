@@ -6,8 +6,8 @@
 class Animator
 {
 public:
-	Sprite* curSprite;
-	Animation* curAnimation;
+	Sprite* curSprite = NULL;
+	Animation* curAnimation = NULL;
 	std::map<std::string, Animation> animations;
 	int curFrame;
 	float timerFrame;

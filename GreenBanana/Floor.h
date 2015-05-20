@@ -9,7 +9,6 @@ public:
 	~Floor();
 
 	void Update(float dt);
-	void Render(sf::RenderWindow* window);
 };
 
 #endif

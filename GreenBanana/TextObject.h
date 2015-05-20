@@ -8,14 +8,14 @@ class TextObject : public Gameobject
 {
 public:
 	TextObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
-	~TextObject();
+	virtual ~TextObject();
 
 	//std::string GetName() { return name; };
 	//sf::Text GetString() { return text.getString; };
 	//sf::Vector2f GetPosition() { return text.getPosition(); };
 	
 	void SetPosition(sf::Vector2f newPos) { text.setPosition(newPos); };
-	void Render(sf::RenderWindow* window);
+	virtual void Render(sf::RenderWindow* window);
 	void Update(float dt);
 	sf::Text text;
 

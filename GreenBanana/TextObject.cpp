@@ -15,6 +15,9 @@ TextObject::TextObject(std::string type, std::string name, float x, float y, boo
 	}
 	text.setFont(font);
 	text.setString("Press 1 to Jason");
+
+	collider = new BoxCollider();
+	collider->size = sf::Vector2f(0,0);
 }
 
 
@@ -24,10 +27,11 @@ TextObject::~TextObject()
 
 void TextObject::Render(sf::RenderWindow* window)
 {
+	text.setPosition(GetPosition());
 	window->draw(text);
 }
 
 void TextObject::Update(float dt)
 {
-
+	
 }

@@ -17,7 +17,8 @@ Floor::Floor(std::string type, std::string name, float x, float y, bool worldSpa
 	animations.animations["idle"] = idle;
 	animations.SwitchAnimations("idle");
 
-	collider->size = sf::Vector2f(160, 224);
+	collider = new BoxCollider();
+	collider->size = sf::Vector2f(animations.curSprite->width, animations.curSprite->height);
 }
 
 Floor::~Floor()
@@ -26,11 +27,7 @@ Floor::~Floor()
 
 void Floor::Update(float dt)
 {
+	animations.Update(dt);
 
-}
-
-void Floor::Render(sf::RenderWindow* window)
-{
-	animations.curSprite->sprite->setPosition(GetPosition());
-	window->draw(*animations.curSprite->sprite);
+	collider->center = position + sf::Vector2f(animations.curSprite->width / 2, animations.curSprite->height / 2);
 }
