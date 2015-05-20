@@ -5,7 +5,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 #include <math.h>
-
+#include "GameManager.h"
 #include "Level.h"
 
 using namespace std::chrono;
@@ -49,6 +49,8 @@ void Render(sf::RenderWindow* rw)
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
+	GameManager::shared_instance().rw = &window;
+
 	sf::View camera;
 
 	camera.setSize(sf::Vector2f(720, 480));
@@ -90,10 +92,13 @@ int main()
 			lastTime = std::chrono::high_resolution_clock::now();
 		}
 
-		timer += dt.count()/10;
-
-		camera.setCenter(sf::Vector2f(sin(timer)* 100, 0));
-
+		////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////
+		timer += dt.count()/10;								////////
+															////////
+		camera.setCenter(sf::Vector2f(sin(timer)* 100, 0));	////////
+		////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////
 
 		window.setView(camera);
 		
