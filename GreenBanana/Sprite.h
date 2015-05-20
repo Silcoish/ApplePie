@@ -14,7 +14,7 @@ class Sprite
 		Sprite();
 		Sprite(sf::Texture* texture, sf::Rect<int> rect);
 		~Sprite();
-		void LoadTexture(std::string& fileLocation);
+		void LoadTexture(std::string fileLocation);
 };
 
 #endif

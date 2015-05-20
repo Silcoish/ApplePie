@@ -52,13 +52,11 @@ void Level::Update(float dt)
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			std::fstream out("level.txt", std::ios::out);
+			std::fstream out("Resources/SceneData/testgame.txt", std::ios::out);
 			for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
 			{
 				out << (*it)->Serialize();
 			}
-
-			
 		}
 		
 		//Mouse release, place object
