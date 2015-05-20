@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "Player.h"
 
 Level::Level(std::string filePath)
 {
@@ -26,6 +27,7 @@ void Level::Update(float dt)
 			{
 				std::cout << objectsInScene.size() << std::endl;
 				Player* player = new Player("player", "player", pos.x-80, pos.y-112, 1, 0);
+				player->SetCurrentScene(this);
 				currentObject = player;
 				objectsInScene.push_back(player);
 			}

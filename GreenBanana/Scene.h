@@ -6,11 +6,11 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "Gameobject.h"
-#include "Player.h"
-#include "Trap.h"
-#include "Health.h"
-#include "Floor.h"
-#include "Coin.h"
+//#include "Player.h"
+//#include "Trap.h"
+//#include "Health.h"
+//#include "Floor.h"
+//#include "Coin.h"
 #include "TextObject.h"
 
 
@@ -34,7 +34,7 @@ public:
 	void SetName(std::string newName) { name = newName; };
 	void SetFilePath(std::string newPath) { filePath = newPath; };
 
-	std::vector<Gameobject*>* CollisionCheck(BoxCollider* col);
+	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions);
 
 protected:
 	std::string name;

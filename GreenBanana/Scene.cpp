@@ -79,6 +79,7 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 	if (type == "Player" || type == "player")
 	{
 		Player* newObject = new Player(type ,name, x, y, worldSpace, isStatic);
+		newObject->SetCurrentScene(this);
 		objectsInScene.push_back(newObject);
 	}
 	else if (type == "Coin" || type == "coin")
@@ -96,32 +97,31 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 
 }
 
-std::vector<Gameobject*>* Scene::CollisionCheck(BoxCollider* cola)
+bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allCollisions)
 {
-
-	std::vector<Gameobject*>* allCollisions = new std::vector<Gameobject*>();
 	BoxCollider* colb;
 
 	for (size_t i = 0; i < objectsInScene.size(); i++)
 	{
-		colb = &objectsInScene[i]->GetCollider();
-		float distx = abs(colb->center.x - cola->center.x);
-		float disty = abs(colb->center.y - cola->center.y);
-
-		if (distx < (cola->size.x / 2 + colb->size.x / 2) && disty < (cola->size.y / 2 + colb->size.y / 2))
+		colb = objectsInScene[i]->GetCollider();
+		if (cola != colb)
 		{
-			allCollisions->push_back(objectsInScene[i]);
+			float distx = abs(colb->center.x - cola->center.x);
+			float disty = abs(colb->center.y - cola->center.y);
+
+			if (distx < (cola->size.x / 2 + colb->size.x / 2) && disty < (cola->size.y / 2 + colb->size.y / 2))
+			{
+				out_allCollisions.push_back(objectsInScene[i]);
+			}
+		}
+		else
+		{
+
+		//	std::cout << "sothing wrong" << std::endl;
 		}
 	}
 
-	if (allCollisions->size() > 0)
-	{
-		return allCollisions;
-	}
-	else
-	{
-		return nullptr;
-	}
+	return out_allCollisions.size() != 0;
 }
 
 void Scene::SceneLogic(float dt)

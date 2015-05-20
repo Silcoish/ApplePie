@@ -1,4 +1,1 @@
 player,Player,10,10,1,0
-player,player,-220.999,-186,1,0
-player,player,271.346,-183,1,0
-player,player,173.337,56,1,0

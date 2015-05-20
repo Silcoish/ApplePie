@@ -17,7 +17,7 @@ Floor::Floor(std::string type, std::string name, float x, float y, bool worldSpa
 	animations.animations["idle"] = idle;
 	animations.SwitchAnimations("idle");
 
-	collider.size = sf::Vector2f(160, 224);
+	collider->size = sf::Vector2f(160, 224);
 }
 
 Floor::~Floor()

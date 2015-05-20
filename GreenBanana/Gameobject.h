@@ -6,6 +6,9 @@
 #include "BoxCollider.h"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics.hpp>
+//#include "Scene.h"
+
+class Scene;
 
 class Gameobject
 {
@@ -30,24 +33,26 @@ public:
 	std::string GetName() { return name; };
 	void SetName(std::string newName) { name = newName; };
 
-	std::string GetType() { return type; };
-	void SetType(std::string newType) { type = newType; };
+	std::string GetType() { return type; }
+	void SetType(std::string newType) { type = newType; }
 
-	Animator GetAnimator() { return animations; };
+	Animator GetAnimator() { return animations; }
 
-	BoxCollider GetCollider(){ return collider; };
+	BoxCollider* GetCollider(){ return collider; }
 
+	Scene* GetCurrentScene(){ return curScene; }
+	void SetCurrentScene(Scene* sc){ curScene = sc; }
 
 	std::string Serialize();
 	//Animator SetAnimator(Animator newAnimator) { animations = newAnimator; };
-
 protected:	
 	// Variables
+	Scene* curScene;
 	std::string name;
 	std::string type;
 	sf::Vector2f position;
 	Animator animations;
-	BoxCollider collider;
+	BoxCollider* collider;
 	bool isStatic;
 	bool worldSpace;
 };
