@@ -35,6 +35,9 @@ public:
 
 	Animator GetAnimator() { return animations; };
 
+	BoxCollider GetCollider(){ return collider; };
+
+
 	std::string Serialize();
 	//Animator SetAnimator(Animator newAnimator) { animations = newAnimator; };
 

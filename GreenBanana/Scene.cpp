@@ -96,20 +96,32 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 
 }
 
-std::vector<Gameobject*>* Scene::CollisionCheck(BoxCollider col)
+std::vector<Gameobject*>* Scene::CollisionCheck(BoxCollider* cola)
 {
 
-	std::vector<Gameobject*>* allCollisions;
+	std::vector<Gameobject*>* allCollisions = new std::vector<Gameobject*>();
+	BoxCollider* colb;
 
 	for (size_t i = 0; i < objectsInScene.size(); i++)
 	{
-		
+		colb = &objectsInScene[i]->GetCollider();
+		float distx = abs(colb->center.x - cola->center.x);
+		float disty = abs(colb->center.y - cola->center.y);
 
-
-
-
+		if (distx < (cola->size.x / 2 + colb->size.x / 2) && disty < (cola->size.y / 2 + colb->size.y / 2))
+		{
+			allCollisions->push_back(objectsInScene[i]);
+		}
 	}
-	return nullptr;
+
+	if (allCollisions->size() > 0)
+	{
+		return allCollisions;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 void Scene::SceneLogic(float dt)
