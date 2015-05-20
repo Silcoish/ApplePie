@@ -2,6 +2,7 @@
 #define LEVEL_H
 #include "Scene.h"
 #include "GameManager.h"
+#include <sstream>
 
 class Level : public Scene
 {

@@ -52,19 +52,25 @@ void Level::Update(float dt)
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			
-		}
+			std::string file;
+			for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
+			{
+				//file += (*it)->GetName() + "," + (*it)->GetName() + "," + std::to_string((*it)->GetPosition().x) + "," + std::to_string((*it)->GetPosition().y) + "," + (*it)->GetworldSpace + "," + (*it)->GetIsStatic() + "\n";
+			}
 
+			std::cout << file << std::endl;
+		}
+		
 		//Mouse release, place object
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			currentObject = NULL;
 	}
 	
 	//Update all the objects in the scene
-	/*for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
+	for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
 	{
 		(*it)->Update(dt);
-	}*/
+	}
 }
 
 void Level::Render(sf::RenderWindow* rw)
