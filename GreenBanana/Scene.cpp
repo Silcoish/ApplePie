@@ -360,7 +360,7 @@ bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allC
 						{
 							velocity.y += ((cola->size.y / 2) + (colb->size.y / 2));
 						}
-						std::cout << "vert: " << std::endl;
+
 					}
 					else if (colHorizontal)
 					{
@@ -374,7 +374,7 @@ bool Scene::CollisionCheck(BoxCollider* cola, std::vector<Gameobject*>& out_allC
 						{
 							velocity.x += ((cola->size.x / 2) + (colb->size.x / 2));
 						}
-						std::cout << "horz: " << std::endl;
+
 					}
 					hitSomething = true;
 				}
