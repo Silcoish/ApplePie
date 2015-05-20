@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SCENE_H
+#define SCENE_H
 #include <iostream>
 #include <map>
 #include <fstream>
@@ -17,7 +18,7 @@
 class Scene
 {
 public:
-	std::vector<Gameobject*> ObjectsInScene;
+	std::vector<Gameobject*> objectsInScene;
 
 	void SceneLogic();
 
@@ -33,9 +34,14 @@ public:
 	void SetName(std::string newName) { name = newName; };
 	void SetFilePath(std::string newPath) { filePath = newPath; };
 
+	std::vector<Gameobject*>* CollisionCheck(BoxCollider col);
+
 protected:
 	std::string name;
 	std::string filePath;
 	
 };
+
+#endif
+
 

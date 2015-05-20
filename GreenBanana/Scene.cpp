@@ -3,7 +3,7 @@
 
 void Scene::Update(float dt)
 {
-	for (auto it = ObjectsInScene.begin(); it != ObjectsInScene.end(); ++it)
+	for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
 	{
 		(*it)->Update(dt);
 	}
@@ -11,7 +11,7 @@ void Scene::Update(float dt)
 
 void Scene::Render(sf::RenderWindow* window)
 {
-	for (auto it = ObjectsInScene.begin(); it != ObjectsInScene.end(); ++it)
+	for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
 	{
 		(*it)->Render(window);
 	}
@@ -19,7 +19,7 @@ void Scene::Render(sf::RenderWindow* window)
 
 void Scene::Unload()
 {
-	for (auto it = ObjectsInScene.begin(); it != ObjectsInScene.end(); ++it)
+	for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
 	{
 		delete (*it);
 	}
@@ -35,7 +35,7 @@ void Scene::Parse()
 	std::cout << in.is_open();
 	
 	int commaCount = 0;
-	while (std::getline(in, loadData, ';'))
+	while (std::getline(in, loadData, '\n'))
 	{
 		std::istringstream objectLine(loadData);
 		std::string objectValue;
@@ -68,7 +68,8 @@ void Scene::Parse()
 
 			commaCount++;
 		}
-			CreateObject(type, name, x, y, worldspace, isStatic);
+		commaCount = 0;
+		CreateObject(type, name, x, y, worldspace, isStatic);
 	}
 
 }
@@ -78,7 +79,7 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 	if (type == "Player" || type == "player")
 	{
 		Player* newObject = new Player(type ,name, x, y, worldSpace, isStatic);
-		ObjectsInScene.push_back(newObject);
+		objectsInScene.push_back(newObject);
 	}
 	else if (type == "Coin" || type == "coin")
 	{
@@ -93,4 +94,19 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		//Health* newObject = new Health(type, name, x, y, worldSpace, isStatic);
 	}
 
+}
+
+std::vector<Gameobject*>* Scene::CollisionCheck(BoxCollider col)
+{
+
+	std::vector<Gameobject*>* allCollisions;
+
+	for (size_t i = 0; i < objectsInScene.size(); i++)
+	{
+		
+
+
+
+
+	}
 }
