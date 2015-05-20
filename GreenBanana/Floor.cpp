@@ -22,6 +22,7 @@ Floor::Floor(std::string type, std::string name, float x, float y, bool worldSpa
 
 	collider = new BoxCollider();
 	collider->size = sf::Vector2f(animations.curSprite->width, animations.curSprite->height);
+	collider->isTrigger = false;
 }
 
 Floor::~Floor()
