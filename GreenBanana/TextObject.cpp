@@ -11,6 +11,7 @@ TextObject::TextObject(std::string type, std::string name, float x, float y, boo
 
 	if (!font.loadFromFile("Resources/Fonts/Bubblegum.ttf"))
 	{
+		std::cout << "Error: Failed to load font" << std::endl;
 		//Failed to load font	
 	}
 	text.setFont(font);

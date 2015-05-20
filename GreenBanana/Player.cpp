@@ -37,7 +37,7 @@ void Player::Update(float dt)
 	std::vector<Gameobject*> allCollisions;
 	bool temp = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions);
 
-	std::cout << allCollisions.size() << std::endl;
+	//std::cout << allCollisions.size() << std::endl;
 
 	
 
