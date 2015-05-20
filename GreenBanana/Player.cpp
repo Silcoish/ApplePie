@@ -18,7 +18,7 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	animations.SwitchAnimations("walk");
 
 	collider = new BoxCollider();
-	collider->size = sf::Vector2f(160,224);
+	collider->size = sf::Vector2f(100,200);
 }
 
 Player::~Player()
@@ -29,7 +29,7 @@ Player::~Player()
 void Player::Update(float dt)
 {
 	animations.Update(dt);
-	collider->center = position + sf::Vector2f(animations.curSprite->width / 2, animations.curSprite->height / 2);
+
 	
 	//Input
 	//Movement
@@ -49,18 +49,18 @@ void Player::Update(float dt)
 	//Jump
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-
-
+		velocity.y = -1000 * dt;
 	}
+	else
+	{
+		velocity.y = 1000 * dt;
+	}
+
 
 	//Collision Check
 	std::vector<Gameobject*> allCollisions;
 	bool collision = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, velocity);
 
-	if (collision)
-	{
-		std::cout << "Collision" << std::endl;
-	}
 
 	position += velocity;
 

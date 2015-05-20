@@ -1,3 +1,6 @@
-player,Player,432.386,-102,1,0
-floor,floor,-271.5,28,1,1
-floor,floor,-353.5,-134,1,1
+player,Player,-64,-226,1,0
+floor,floor,172.5,-42,1,1
+floor,floor,-344.5,150,1,1
+floor,floor,-194.5,148,1,1
+floor,floor,-15.5,147,1,1
+floor,floor,170.5,141,1,1

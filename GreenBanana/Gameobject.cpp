@@ -36,6 +36,7 @@ sf::Vector2f Gameobject::GetSize()
 
 void Gameobject::Render(sf::RenderWindow* rw)
 {
+	collider->center = position + sf::Vector2f(animations.curSprite->width / 2, animations.curSprite->height / 2);
 
 	animations.curSprite->sprite->setPosition(GetPosition());
 	rw->draw(*animations.curSprite->sprite);

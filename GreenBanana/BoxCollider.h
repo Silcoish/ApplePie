@@ -9,7 +9,7 @@ public:
 
 	sf::Vector2f center;
 	sf::Vector2f size;
-	bool isTrigger;
+	bool isTrigger = false;
 	
 };
 

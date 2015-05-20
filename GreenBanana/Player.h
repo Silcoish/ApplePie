@@ -12,7 +12,7 @@ public:
 
 private:
 	//Player Variables
-	sf::Vector2f velocity;
+	sf::Vector2f velocity = sf::Vector2f(0,0);
 
 	float walkSpeed = 200;
 
