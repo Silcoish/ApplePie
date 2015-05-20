@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GAMEOBJECT_H
+#define GAMEOBJECT_H
 #include <iostream>
 #include "Animator.h"
 #include "BoxCollider.h"
@@ -45,3 +46,4 @@ protected:
 	bool worldSpace;
 };
 
+#endif

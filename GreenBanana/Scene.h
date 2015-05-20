@@ -22,7 +22,7 @@ public:
 	void SceneLogic();
 
 	virtual void Update(float dt) = 0;
-	void Render(sf::RenderWindow* window);
+	virtual void Render(sf::RenderWindow* window) = 0;
 	void Parse();
 	void CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
 	void Unload();

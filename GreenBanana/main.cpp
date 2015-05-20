@@ -48,6 +48,7 @@ void Render(sf::RenderWindow* rw)
 
 int main()
 {
+	
     sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
 	GameManager::shared_instance().rw = &window;
 

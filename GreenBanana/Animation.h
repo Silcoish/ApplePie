@@ -1,3 +1,5 @@
+#ifndef ANIMATION_H
+#define ANIMATION_H
 #include <vector>
 #include "Sprite.h"
 
@@ -15,3 +17,5 @@ public:
 	std::string nextAnimation;
 	float globalSpeed;
 };
+
+#endif

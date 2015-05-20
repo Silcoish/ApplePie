@@ -1,3 +1,5 @@
+#ifndef ANIMATOR_H
+#define ANIMATOR_H
 #include <map>
 #include "Animation.h"
 
@@ -14,3 +16,5 @@ public:
 	void NextFrame();
 	void SwitchAnimations(std::string anim);
 };
+
+#endif

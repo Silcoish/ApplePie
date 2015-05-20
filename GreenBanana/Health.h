@@ -1,4 +1,5 @@
-//#pragma once
+#ifndef HEALTH_H
+#define HEALTH_H
 //#include "Gameobject.h"
 //class Health :
 //	public Gameobject
@@ -11,3 +12,5 @@
 //	void Render(sf::RenderWindow* window);
 //};
 //
+
+#endif

@@ -1,4 +1,5 @@
-//#pragma once
+#ifndef FLOOR_H
+#define FLOOR_H
 //#include "Gameobject.h"
 //class Floor :
 //	public Gameobject
@@ -11,3 +12,4 @@
 //	void Render(sf::RenderWindow* window);
 //};
 //
+#endif

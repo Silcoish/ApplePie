@@ -1,3 +1,5 @@
+#ifndef GAMEMANAGER_H
+#define GAMEMANAGER_H
 #include "UpgradeData.h"
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
@@ -17,3 +19,5 @@ private:
 	
 	}
 };
+
+#endif

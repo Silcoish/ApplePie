@@ -1,4 +1,5 @@
-//#pragma once
+#ifndef COIN_H
+#define COIN_H
 //#include "Gameobject.h"
 //class Coin :
 //	public Gameobject
@@ -11,3 +12,4 @@
 //	void Render(sf::RenderWindow* window);
 //};
 //
+#endif
