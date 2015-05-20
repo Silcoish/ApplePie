@@ -34,7 +34,7 @@ public:
 	void SetName(std::string newName) { name = newName; };
 	void SetFilePath(std::string newPath) { filePath = newPath; };
 
-	std::vector<Gameobject*>* CollisionCheck(BoxCollider col);
+	std::vector<Gameobject*>* CollisionCheck(BoxCollider* col);
 
 protected:
 	std::string name;
