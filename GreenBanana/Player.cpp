@@ -34,8 +34,3 @@ void Player::Render(sf::RenderWindow* window)
 {
 	window->draw(*animations.curSprite->sprite);
 }
-
-void Player::CheckCollisions()
-{
-	
-}
