@@ -89,4 +89,4 @@ floor,floor,-770,-840,1,1,0
 floor,floor,-510,-960,1,1,0
 floor,floor,-640,-960,1,1,0
 floor,floor,-770,-960,1,1,0
-health,health,-680,-480,0,1,1
+health,health,-700,-460,0,1,0
