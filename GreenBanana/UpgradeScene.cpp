@@ -1,18 +1,13 @@
 #include "UpgradeScene.h"
+#include <iostream>
 
-
-UpgradeScene::UpgradeScene()
+UpgradeScene::UpgradeScene(std::string filepath)
 {
+	SetFilePath(filepath);
 	Parse();
-	
-	//for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
-	//{
-	//	if ((*it)->GetName() == "DoubleJumpText");
-	//	{
-	//		doubleJumpText = (*it);
-	//		break;
-	//	}
-	//}
+	jumpHeightText = new TextObject("text","JumpHeight",100,100,0,1,100);
+	jumpHeightText->text.setString("Increase Jump Height \n                0/10");
+	objectsInScene.push_back(jumpHeightText);
 }
 
 UpgradeScene::~UpgradeScene()
@@ -27,16 +22,10 @@ void UpgradeScene::Render(sf::RenderWindow* rw)
 	}
 }
 
-void UpgradeScene::Update(float dt)
-{
-	SceneLogic(dt);
-	for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
-	{
-		(*it)->Update(dt);
-	}
-}
 
 void UpgradeScene::SceneLogic(float dt)
 {
-
+	std::stringstream ss;
+	ss << "Increase Jump Height" << std::endl << "                " << GameManager::shared_instance().upgradeData.jumpHeight << "/5";
+	jumpHeightText->text.setString(ss.str());	
 }

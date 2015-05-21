@@ -1,20 +1,20 @@
 #pragma once
 #include "Scene.h"
+#include "GameManager.h"
 class UpgradeScene :
 	public Scene
 {
 public:
-	UpgradeScene();
+	UpgradeScene(std::string filpath);
 	~UpgradeScene();
 
-	void Update(float dt);
 	void Render(sf::RenderWindow* window);
-	void SceneLogic(float dt);
+	virtual void SceneLogic(float dt);
 	
-	Gameobject* doubleJumpText = nullptr;
-	Gameobject* moveSpeedText = nullptr;
-	Gameobject* jumpHeightText = nullptr;
-	Gameobject* sugarMagnetText = nullptr;
+	TextObject* clockSpeed = nullptr;
+	TextObject* moveSpeedText = nullptr;
+	TextObject* jumpHeightText = nullptr;
+	TextObject* sugarMagnetText = nullptr;
 
 };
 
