@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "Level.h"
 #include "UpgradeScene.h"
+#include "MenuScene.h"
 
 class GameManager
 {
@@ -65,6 +66,9 @@ public:
 
 		Scene* upgradeScene = new UpgradeScene("Resources/SceneData/upgrade.txt");
 		scenes[UPGRADE] = upgradeScene;
+
+		Scene* menuScene = new MenuScene("Resources/SceneData/menu.txt");
+		scenes[MENU] = menuScene;
 	}
 
 private:
