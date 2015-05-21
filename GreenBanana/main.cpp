@@ -26,7 +26,8 @@ void Render(sf::RenderWindow* rw)
 
 int main()
 {
-	
+	std::srand(std::time(0));
+
     sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
 	GameManager::shared_instance().rw = &window;
 
@@ -51,8 +52,6 @@ int main()
 
     while (window.isOpen())
     {
-
-
 		curTime = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> dt = std::chrono::duration_cast<std::chrono::duration<double>>(curTime - lastTime);
 		if (dt.count() >= targetTime)

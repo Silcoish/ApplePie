@@ -342,6 +342,12 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		lollipop->SetCurrentScene(this);
 		objectsInScene.push_back(lollipop);
 	}
+	else if (type == "LevelBackground" || type == "levelBackground")
+	{
+		LevelBackground* levelBackground = new LevelBackground(type, name, x, y, worldSpace, isStatic, depth);
+		levelBackground->SetCurrentScene(this);
+		objectsInScene.push_back(levelBackground);
+	}
 
 }
 

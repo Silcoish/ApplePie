@@ -1,9 +1,7 @@
 #include "Lollipop.h"
 
 Lollipop::Lollipop(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
-{
-	//std::srand(std::time(0));
-	
+{	
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
@@ -17,7 +15,7 @@ Lollipop::Lollipop(std::string type, std::string name, float x, float y, bool wo
 	ss << i;
 	ss << ".png";
 
-	std::srand(std::rand());
+	//std::srand(std::rand());
 
 
 	Animation walk;
