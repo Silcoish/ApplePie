@@ -1,12 +1,14 @@
 #include "SpritesheetLoader.h"
 #include <iostream>
 
-std::vector<Sprite*> SpritesheetLoader::Load(std::string filePath, int spriteWidth, int spriteHeight)
+std::vector<Sprite*> SpritesheetLoader::Load(std::string filePath, int spriteWidth, int spriteHeight, int frames)
 {
 	std::vector<Sprite*> sprites;
 
 	Sprite* spritesheet = new Sprite();
 	spritesheet->LoadTexture(filePath);
+
+	float f = 0;
 
 	for (int y = 0; y < (int)spritesheet->height/ spriteHeight; y++)
 	{
@@ -14,6 +16,9 @@ std::vector<Sprite*> SpritesheetLoader::Load(std::string filePath, int spriteWid
 		{
 			Sprite* temp = new Sprite(spritesheet->texture, sf::Rect<int>(x * spriteWidth, y * spriteHeight, spriteWidth, spriteHeight));
 			sprites.push_back(temp);
+			f++;
+			if (f >= frames)
+				return sprites;
 		}
 	}
 

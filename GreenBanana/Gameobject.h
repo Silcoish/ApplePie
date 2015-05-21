@@ -4,6 +4,7 @@
 #include <sstream>
 #include "Animator.h"
 #include "BoxCollider.h"
+#include "SpritesheetLoader.h"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics.hpp>
 //#include "Scene.h"

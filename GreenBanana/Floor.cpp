@@ -1,5 +1,4 @@
 #include "Floor.h"
-#include "SpritesheetLoader.h"
 
 Floor::Floor(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
 {
@@ -13,7 +12,7 @@ Floor::Floor(std::string type, std::string name, float x, float y, bool worldSpa
 	// set the floor sprite
 	Animation idle;
 	SpritesheetLoader loader;
-	idle.sprites = loader.Load("Resources/Objects/Environment/ChocBlockSmall.png", 133, 122);
+	idle.sprites = loader.Load("Resources/Objects/Environment/ChocBlockSmall.png", 133, 122, 1);
 	idle.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
 	idle.sprites[0]->sprite->setScale(sf::Vector2f((130.0 / 133.0), (120.0 / 122.0)));
 	idle.sprites[0]->width = 130;

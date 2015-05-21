@@ -8,7 +8,7 @@
 class SpritesheetLoader
 {
 	public:
-		std::vector<Sprite*> Load(std::string filePath, int spriteWidth, int spriteHeight);
+		std::vector<Sprite*> Load(std::string filePath, int spriteWidth, int spriteHeight, int frames);
 };
 
 #endif

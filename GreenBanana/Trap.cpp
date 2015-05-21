@@ -14,7 +14,7 @@ Trap::Trap(std::string type, std::string name, float x, float y, bool worldSpace
 	animations;
 	Animation idle;
 	SpritesheetLoader loader;
-	idle.sprites = loader.Load("Resources/Animations/Choc/choc.png", 385, 98);
+	idle.sprites = loader.Load("Resources/Animations/Choc/choc.png", 385, 98, 1);
 	idle.endEvent = Animation::AnimationEndEvent::Loop;
 	animations.animations["idle"] = idle;
 	animations.SwitchAnimations("idle");

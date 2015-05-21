@@ -47,29 +47,43 @@ void Gameobject::Render(sf::RenderWindow* rw)
 	collider->center = position + sf::Vector2f(animations.curSprite->width / 2, animations.curSprite->height / 2);
 
 	animations.curSprite->sprite->setPosition(GetPosition());
-	rw->draw(*animations.curSprite->sprite);
+	
 
+	if (GetworldSpace())
+	{
+		animations.curSprite->sprite->setPosition(GetPosition());
+		rw->draw(*animations.curSprite->sprite);
+	}
+	else
+	{
+		collider->center += GameManager::shared_instance().cameraPos;
+		animations.curSprite->sprite->setPosition(GetPosition() + GameManager::shared_instance().cameraPos);
+		rw->draw(*animations.curSprite->sprite);
+	}
 
-	sf::Vertex line[] = { sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y - collider->size.y / 2)),
-		sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y - collider->size.y / 2)),
+	if (GameManager::shared_instance().showBoxColliders)
+	{
+		sf::Vertex line[] = { sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y - collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y - collider->size.y / 2)),
 
-		sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y - collider->size.y / 2)),
-		sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y + collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y - collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y + collider->size.y / 2)),
 
-		sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y + collider->size.y / 2)),
-		sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y + collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y + collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y + collider->size.y / 2)),
 
-		sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y + collider->size.y / 2)),
-		sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y - collider->size.y / 2)) };
+			sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y + collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y - collider->size.y / 2)) };
 
-	line[0].color = sf::Color(0, 255, 0, 225);
-	line[1].color = sf::Color(0, 255, 0, 225);
-	line[2].color = sf::Color(0, 255, 0, 225);
-	line[3].color = sf::Color(0, 255, 0, 225);
-	line[4].color = sf::Color(0, 255, 0, 225);
-	line[5].color = sf::Color(0, 255, 0, 225);
-	line[6].color = sf::Color(0, 255, 0, 225);
-	line[7].color = sf::Color(0, 255, 0, 225);
+		line[0].color = sf::Color(0, 255, 0, 225);
+		line[1].color = sf::Color(0, 255, 0, 225);
+		line[2].color = sf::Color(0, 255, 0, 225);
+		line[3].color = sf::Color(0, 255, 0, 225);
+		line[4].color = sf::Color(0, 255, 0, 225);
+		line[5].color = sf::Color(0, 255, 0, 225);
+		line[6].color = sf::Color(0, 255, 0, 225);
+		line[7].color = sf::Color(0, 255, 0, 225);
 
-	rw->draw(line, 8, sf::Lines);
+		rw->draw(line, 8, sf::Lines);
+	}
 }

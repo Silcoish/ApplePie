@@ -20,6 +20,11 @@ void Scene::Update(float dt)
 		{
 			sf::Vector2f newPos = sf::Vector2f(pos.x - currentObject->GetSize().x / 2, pos.y - currentObject->GetSize().y / 2);
 
+			if (!currentObject->GetworldSpace())
+			{
+				newPos -= GameManager::shared_instance().cameraPos;
+			}
+
 			//newPos.x -= modff(1, &newPos.x);
 			newPos.x = (float)((int)(newPos.x / 10)) * 10;
 			newPos.y = (float)((int)(newPos.y / 10)) * 10;
@@ -63,6 +68,17 @@ void Scene::Update(float dt)
 			}
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4))
+		{
+			if (currentObject == nullptr)
+			{
+				Health* health = new Health("health", "health", pos.x, pos.y, 0, 1, 0);
+				health->SetCurrentScene(this);
+				currentObject = health;
+				objectsInScene.push_back(health);
+			}
+		}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			GameManager::shared_instance().cameraPos.x -= GameManager::shared_instance().cameraMoveSpeed * dt;
 
@@ -89,7 +105,7 @@ void Scene::Update(float dt)
 			if (currentObject != nullptr)
 			{
 				currentObject->SetDepth(currentObject->GetDepth() + 1);
-				SortGameobjects();
+				SortGameobjects(objectsInScene);
 			}
 		}
 
@@ -98,9 +114,13 @@ void Scene::Update(float dt)
 			if (currentObject != nullptr)
 			{
 				currentObject->SetDepth(currentObject->GetDepth() - 1);
-				SortGameobjects();
+				SortGameobjects(objectsInScene);
 			}
 		}
+
+		if (!inputManager->curState["Tab"] && inputManager->prevState["Tab"])
+			GameManager::shared_instance().showBoxColliders = !GameManager::shared_instance().showBoxColliders;
+		
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Delete))
 		{
@@ -116,6 +136,7 @@ void Scene::Update(float dt)
 				{
 					auto index = std::distance(objectsInScene.begin(), it);
 					objectsInScene.erase(objectsInScene.begin() + index);
+					delete currentObject;
 					currentObject = nullptr;
 				}
 			}
@@ -389,7 +410,7 @@ void Scene::SceneLogic(float dt)
 
 }
 
-void SortGameobjects(std::vector<Gameobject*>& gameObjects)
+void Scene::SortGameobjects(std::vector<Gameobject*>& gameObjects)
 {
 	bool somethingChanged = false;
 
@@ -409,5 +430,5 @@ void SortGameobjects(std::vector<Gameobject*>& gameObjects)
 				somethingChanged = true;
 			}
 		}
-	} while (somethingChanged)
+	} while (somethingChanged);
 }

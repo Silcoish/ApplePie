@@ -14,7 +14,7 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 
 	Animation walk;
 	SpritesheetLoader loader;
-	walk.sprites = loader.Load("Resources/Animations/Player/Idle/Walk_cycle.png", 160, 224);
+	walk.sprites = loader.Load("Resources/Animations/Player/Idle/Walk_cycle.png", 160, 224, 90);
 	walk.endEvent = Animation::AnimationEndEvent::Loop;
 	walk.globalSpeed = 0.02;
 	animations.animations["walk"] = walk;

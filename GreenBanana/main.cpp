@@ -96,7 +96,7 @@ int main()
 			InputMapper::shared_instance().prevState = InputMapper::shared_instance().curState;
 			//Set Each KeyPress
 			InputMapper::shared_instance().curState["LShift"] =			sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
-			InputMapper::shared_instance().curState["RShift"] =			sf::Keyboard::isKeyPressed(sf::Keyboard::RShift);
+			InputMapper::shared_instance().curState["Tab"] =			sf::Keyboard::isKeyPressed(sf::Keyboard::Tab);
 			InputMapper::shared_instance().curState["Equal"] =			sf::Keyboard::isKeyPressed(sf::Keyboard::Equal);
 			InputMapper::shared_instance().curState["Dash"] =			sf::Keyboard::isKeyPressed(sf::Keyboard::Dash);
 			InputMapper::shared_instance().curState["MouseLeft"] =		sf::Mouse::isButtonPressed(sf::Mouse::Left);
