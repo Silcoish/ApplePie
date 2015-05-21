@@ -6,20 +6,14 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "Gameobject.h"
-//#include "Player.h"
-//#include "Trap.h"
-//#include "Health.h"
-//#include "Floor.h"
-//#include "Coin.h"
 #include "TextObject.h"
 #include "InputManager.h"
-
-
 
 class Scene
 {
 public:
 	std::vector<Gameobject*> objectsInScene;
+	Sprite* background = NULL;
 
 	void Update(float dt);//General Data that all scenes run
 	virtual void Render(sf::RenderWindow* rw);//Render that all scenes run
@@ -34,6 +28,7 @@ public:
 
 	void SetName(std::string newName) { name = newName; };
 	void SetFilePath(std::string newPath) { filePath = newPath; };
+	void SetBackground(std::string fileName) { background = new Sprite(); background->LoadTexture(fileName); }
 
 	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions);
 	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions, sf::Vector2f& offset);

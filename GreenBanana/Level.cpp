@@ -5,6 +5,8 @@ Level::Level(std::string filePath)
 {
 	SetFilePath(filePath);
 	Parse();
+	SetBackground("Resources/Backgrounds/BG_Large.png");
+	background->sprite->setPosition(0,0);
 }
 
 Level::~Level()
@@ -17,13 +19,3 @@ void Level::SceneLogic(float dt)
 
 
 }
-
-
-//void Level::Render(sf::RenderWindow* rw)
-//{
-//	for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
-//	{
-//		(*it)->Render(rw);
-//	}
-//
-//}

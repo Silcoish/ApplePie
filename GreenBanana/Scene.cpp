@@ -222,6 +222,7 @@ void Scene::Update(float dt)
 
 void Scene::Render(sf::RenderWindow* window)
 {
+	window->draw(*background->sprite);
 	for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
 	{
 		(*it)->Render(window);
