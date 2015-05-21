@@ -47,7 +47,7 @@ void Scene::Update(float dt)
 		{
 			if (currentObject == nullptr)
 			{
-				Floor* floor = new Floor("floor", "floor", pos.x, pos.y, 1, 1);
+				Floor* floor = new Floor("floor", "floor", pos.x, pos.y, 1, 1, 0);
 				floor->SetCurrentScene(this);
 				currentObject = floor;
 				objectsInScene.push_back(floor);
@@ -58,7 +58,7 @@ void Scene::Update(float dt)
 		{
 			if (currentObject == nullptr)
 			{
-				TextObject* text = new TextObject("text", "text", pos.x, pos.y, 1, 1);
+				TextObject* text = new TextObject("text", "text", pos.x, pos.y, 1, 1, 0);
 				text->SetCurrentScene(this);
 				text->text.setString("working");
 				currentObject = text;
@@ -201,9 +201,10 @@ void Scene::Unload()
 
 void Scene::Parse()
 {
-	std::string loadData;
-	std::string type, name;
-	float x, y;
+	std::string loadData = "";
+	std::string type, name = "";
+	int depth = 0;
+	float x, y = 0;
 	bool worldspace, isStatic;
 	std::fstream in(filePath, std::ios::in);
 	std::cout << in.is_open();
@@ -240,30 +241,33 @@ void Scene::Parse()
 				else
 					isStatic = false;
 
+			if (commaCount == 6)
+				depth = std::stoi(objectValue);
+
 			commaCount++;
 		}
 		commaCount = 0;
-		CreateObject(type, name, x, y, worldspace, isStatic);
+		CreateObject(type, name, x, y, worldspace, isStatic, depth);
 	}
 
 }
 
-void Scene::CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic)
+void Scene::CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
 {
 	if (type == "Player" || type == "player")
 	{
-		Player* newObject = new Player(type ,name, x, y, worldSpace, isStatic);
+		Player* newObject = new Player(type ,name, x, y, worldSpace, isStatic, depth);
 		newObject->SetCurrentScene(this);
 		objectsInScene.push_back(newObject);
 	}
 	else if (type == "Floor" || type == "floor")
 	{
-		Floor* newObject = new Floor(type, name, x, y, worldSpace, isStatic);
+		Floor* newObject = new Floor(type, name, x, y, worldSpace, isStatic, depth);
 		objectsInScene.push_back(newObject);
 	}
 	else if (type == "Coin" || type == "coin")
 	{
-		//Coin* newObject = new Coin(type, name, x, y, worldSpace, isStatic);
+		//Coin* newObject = new Coin(type, name, x, y, worldSpace, isStatic, depth);
 	}
 	else if (type == "Trap" || type == "Trap")
 	{

@@ -10,6 +10,7 @@ UpgradeScene::UpgradeScene()
 	//	if ((*it)->GetName() == "DoubleJumpText");
 	//	{
 	//		doubleJumpText = (*it);
+	//		break;
 	//	}
 	//}
 }

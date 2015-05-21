@@ -7,7 +7,7 @@
 class TextObject : public Gameobject
 {
 public:
-	TextObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
+	TextObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth);
 	virtual ~TextObject();
 
 	//std::string GetName() { return name; };

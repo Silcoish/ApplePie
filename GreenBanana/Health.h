@@ -5,7 +5,7 @@
 //	public Gameobject
 //{
 //public:
-//	Health(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
+//	Health(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth);
 //	~Health();
 //
 //	void Update(float dt);

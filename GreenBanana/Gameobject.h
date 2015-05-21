@@ -36,6 +36,9 @@ public:
 	std::string GetType() { return type; }
 	void SetType(std::string newType) { type = newType; }
 
+	int GetDepth() { return depth; };
+	void SetDepth(int newDepth) { depth = newDepth; };
+
 	Animator GetAnimator() { return animations; }
 
 	BoxCollider* GetCollider(){ return collider; }
@@ -56,6 +59,7 @@ protected:
 	BoxCollider* collider;
 	bool isStatic;
 	bool worldSpace;
+	int depth;
 };
 
 #endif
