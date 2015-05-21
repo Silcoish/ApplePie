@@ -5,6 +5,11 @@ class UpgradeData
 
 public:
 	int moveSpeed, clockSpeed, jumpHeight, CollectionArea;
+	int moveSpeedCost = 5;
+	int clockSpeedCost = 5;
+	int jumpHeightCost = 5;
+	int CollectionAreaCost =5;
+	int coins = 10;
 	bool doubleJump;
 };
 
