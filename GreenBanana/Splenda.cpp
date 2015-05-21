@@ -47,14 +47,12 @@ void Splenda::Update(float dt)
 	if (direction == DOWN)
 	{
 		//Moving Downwards
-		std::cout << "down" << std::endl;
 		vel.y = 600 * dt;
 	}
 
 	if (direction == UP)
 	{
-		//Moving Downwards
-		std::cout << "up" << std::endl;
+		//Moving upwards
 		vel.y = -600 * dt;
 	}
 
