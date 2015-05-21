@@ -1,4 +1,11 @@
-player,Player,142.817,-92,1,0,0
+levelBackground,levelBackground,-720,-480,0,1,-20
+lollipop,lollipop,-470,-140,1,1,-2
+lollipop,lollipop,750,-480,1,1,-2
+lollipop,lollipop,-550,-210,1,1,-1
+lollipop,lollipop,-400,-260,1,1,-1
+lollipop,lollipop,460,-500,1,1,-1
+lollipop,lollipop,570,-590,1,1,-1
+player,Player,-67.5162,-332,1,0,0
 floor,floor,-120,120,1,1,0
 floor,floor,270,120,1,1,0
 floor,floor,-250,120,1,1,0

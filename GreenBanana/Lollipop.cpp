@@ -2,6 +2,8 @@
 
 Lollipop::Lollipop(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
 {
+	//std::srand(std::time(0));
+	
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
@@ -9,18 +11,27 @@ Lollipop::Lollipop(std::string type, std::string name, float x, float y, bool wo
 	SetIsStatic(isStatic);
 	SetDepth(depth);
 
-	// set the floor sprite
-	Animation idle;
-	SpritesheetLoader loader;
-	idle.sprites = loader.Load("Resources/Objects/Environment/Lollipop1.png", 230, 443, 1);
-	idle.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
+	int i = (std::rand() % 8) + 1;
+	std::stringstream ss;
+	ss << "Resources/Objects/Environment/Lollypop";
+	ss << i;
+	ss << ".png";
 
-	animations.animations["idle"] = idle;
-	animations.SwitchAnimations("idle");
+	std::srand(std::rand());
+
+
+	Animation walk;
+	SpritesheetLoader loader;
+	walk.sprites = loader.Load(ss.str(), 225, 439, 1);
+	walk.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
+	walk.globalSpeed = 0.02;
+	animations.animations["walk"] = walk;
+	animations.SwitchAnimations("walk");
+
 
 	collider = new BoxCollider();
-	collider->size = sf::Vector2f(animations.curSprite->width, animations.curSprite->height);
-	collider->isTrigger = false;
+	collider->size = sf::Vector2f(230, 443);
+	collider->isTrigger = true;
 }
 
 Lollipop::~Lollipop()
