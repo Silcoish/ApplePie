@@ -13,12 +13,33 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	SetIsStatic(isStatic);
 	SetDepth(depth);
 
-	Animation walk;
 	SpritesheetLoader loader;
-	walk.sprites = loader.Load("Resources/Animations/Player/Idle/Walk_cycle.png", 160, 224, 90);
+
+	Animation idle;
+	idle.sprites = loader.Load("Resources/Animations/Player/idle.png", 144, 214, 26);
+	idle.endEvent = Animation::AnimationEndEvent::Loop;
+	idle.globalSpeed = 0.02;
+	animations.animations["idle"] = idle;
+
+	Animation walk;
+	walk.sprites = loader.Load("Resources/Animations/Player/Walk_cycle.png", 160, 224, 90);
 	walk.endEvent = Animation::AnimationEndEvent::Loop;
 	walk.globalSpeed = 0.02;
 	animations.animations["walk"] = walk;
+
+	Animation sleep;
+	sleep.sprites = loader.Load("Resources/Animations/Player/sleep.png", 232, 224, 36);
+	sleep.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
+	sleep.globalSpeed = 0.02;
+	animations.animations["sleep"] = sleep;
+
+	Animation death;
+	death.sprites = loader.Load("Resources/Animations/Player/death.png", 320, 232, 47);
+	death.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
+	death.globalSpeed = 0.02;
+	animations.animations["death"] = death;
+
+
 	animations.SwitchAnimations("walk");
 
 	collider = new BoxCollider();
@@ -81,7 +102,22 @@ void Player::Update(float dt)
 		UpdateHealthObjects(health);
 	}
 
-	
+	if (input.curState["1"] && !input.prevState["1"])
+	{
+		animations.SwitchAnimations("idle");
+	}
+	if (input.curState["2"] && !input.prevState["2"])
+	{
+		animations.SwitchAnimations("death");
+	}
+	if (input.curState["3"] && !input.prevState["3"])
+	{
+		animations.SwitchAnimations("sleep");
+	}
+	if (input.curState["4"] && !input.prevState["4"])
+	{
+		animations.SwitchAnimations("walk");
+	}
 
 
 

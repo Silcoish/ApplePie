@@ -82,6 +82,10 @@ int main()
 			InputMapper::shared_instance().curState["L"] = sf::Keyboard::isKeyPressed(sf::Keyboard::L);
 			InputMapper::shared_instance().curState["O"] = sf::Keyboard::isKeyPressed(sf::Keyboard::O);
 			InputMapper::shared_instance().curState["K"] = sf::Keyboard::isKeyPressed(sf::Keyboard::K);
+			InputMapper::shared_instance().curState["1"] = sf::Keyboard::isKeyPressed(sf::Keyboard::Num1);
+			InputMapper::shared_instance().curState["2"] = sf::Keyboard::isKeyPressed(sf::Keyboard::Num2);
+			InputMapper::shared_instance().curState["3"] = sf::Keyboard::isKeyPressed(sf::Keyboard::Num3);
+			InputMapper::shared_instance().curState["4"] = sf::Keyboard::isKeyPressed(sf::Keyboard::Num4);
 
 
 			//Update
