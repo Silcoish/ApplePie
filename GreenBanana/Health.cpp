@@ -1,4 +1,5 @@
 #include "Health.h"
+#include "GameManager.h"
 
 Health::Health(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
 {
@@ -15,27 +16,29 @@ Health::Health(std::string type, std::string name, float x, float y, bool worldS
 	Animation healthFull;
 	healthFull.sprites = loader.Load("Resources/Objects/HealthObjects/sugar.png", 144, 124, 89);
 	healthFull.endEvent = Animation::AnimationEndEvent::Loop;
-	//healthFull.sprites[0]->sprite->setScale(sf::Vector2f((60 / 54), (340 / 336)));
-	healthFull.sprites[0]->width = 144;
-	healthFull.sprites[0]->height = 124;
 	healthFull.globalSpeed = 0.02;
+	healthFull.nextAnimation = "healthFull";
 	animations.animations["healthFull"] = healthFull;
 
 	Animation healthEmpty;
 	healthEmpty.sprites = loader.Load("Resources/Objects/HealthObjects/sugar_Empty.png", 144, 124, 1);
 	healthEmpty.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
-	//healthEmpty.sprites[0]->sprite->setScale(sf::Vector2f((60 / 54), (340 / 336)));
-	healthEmpty.sprites[0]->width = 144;
-	healthEmpty.sprites[0]->height = 124;
 	healthEmpty.globalSpeed = 0.02;
+	healthEmpty.nextAnimation = "healthEmpty";
 	animations.animations["healthEmpty"] = healthEmpty;
 
+	ScaleSprites(animations.animations, sf::Vector2f(70,60));
 
-	animations.SwitchAnimations("healthFull");
+	animations.SwitchAnimations("healthEmpty");
+	//animations.SwitchAnimations("healthFull");
 
 	collider = new BoxCollider();
 	collider->size = sf::Vector2f(animations.curSprite->width, animations.curSprite->height);
 	collider->isTrigger = false;
+
+	//Add to health objects
+	GameManager::shared_instance().healthObjects.push_back(this);
+	
 }
 
 Health::~Health()

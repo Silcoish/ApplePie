@@ -40,12 +40,15 @@ public:
 	int GetDepth() { return depth; };
 	void SetDepth(int newDepth) { depth = newDepth; };
 
-	Animator GetAnimator() { return animations; }
+	Animator& GetAnimator() { return animations; }
 
 	BoxCollider* GetCollider(){ return collider; }
 
 	Scene* GetCurrentScene(){ return curScene; }
 	void SetCurrentScene(Scene* sc){ curScene = sc; }
+
+	void ScaleSprites(std::map<std::string, Animation>& anims, float scale);
+	void ScaleSprites(std::map<std::string, Animation>& anims, sf::Vector2f newSize);
 
 	std::string Serialize();
 	sf::Vector2f GetSize();

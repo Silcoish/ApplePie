@@ -74,6 +74,8 @@ int main()
 			InputMapper::shared_instance().curState["MouseLeft"] =		sf::Mouse::isButtonPressed(sf::Mouse::Left);
 			InputMapper::shared_instance().curState["S"] =				sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 			InputMapper::shared_instance().curState["LControl"] =		sf::Keyboard::isKeyPressed(sf::Keyboard::LControl);
+			InputMapper::shared_instance().curState["P"] = sf::Keyboard::isKeyPressed(sf::Keyboard::P);
+			InputMapper::shared_instance().curState["O"] = sf::Keyboard::isKeyPressed(sf::Keyboard::O);
 
 
 			//Update

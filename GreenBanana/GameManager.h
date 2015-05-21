@@ -18,6 +18,8 @@ public:
 	sf::Vector2f cameraPos;
 	sf::RenderWindow* rw;
 
+	std::vector<Gameobject*> healthObjects;
+
 	enum GameStates
 	{
 		MENU,

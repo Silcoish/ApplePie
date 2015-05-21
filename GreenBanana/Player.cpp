@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Scene.h"
 #include "GameManager.h"
+#include "InputManager.h"
 
 
 Player::Player(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic , int depth)
@@ -22,11 +23,36 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 
 	collider = new BoxCollider();
 	collider->size = sf::Vector2f(100,200);
+
+	health = 20;
+	walkSpeed = 400;
+	jumpTime = 0.3;
+	isGrounded = true;
+	isFalling = false;
+	timerJump = 0;
 }
 
 Player::~Player()
 {
 
+}
+
+void UpdateHealthObjects(int health)
+{
+
+	std::vector<Gameobject*> healthObjs = GameManager::shared_instance().healthObjects;
+
+	for (size_t i = 0; i < healthObjs.size(); i++)
+	{
+		if (i < health)
+		{
+			GameManager::shared_instance().healthObjects[i]->GetAnimator().SwitchAnimations("healthFull");
+		}
+		else
+		{
+			GameManager::shared_instance().healthObjects[i]->GetAnimator().SwitchAnimations("healthEmpty");
+		}
+	}
 }
 
 void Player::Update(float dt)
@@ -35,13 +61,36 @@ void Player::Update(float dt)
 		return;
 	animations.Update(dt);
 
+	InputMapper input = InputMapper::shared_instance();
+
+	if (input.curState["P"] && !input.prevState["P"])
+	{
+		health -= 4;
+		std::cout << "Health Down: " << health << std::endl;
+
+		//Update Health Display
+		UpdateHealthObjects(health);
+
+	}
+	if (input.curState["O"] && !input.prevState["O"])
+	{
+		health += 1;
+		std::cout << "Health Up: " << health << std::endl;
+
+		//Update Health Display
+		UpdateHealthObjects(health);
+	}
+
 	
+
+
+
+
 	//Input
 	//Movement
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		velocity.x = -walkSpeed * dt;
-
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{

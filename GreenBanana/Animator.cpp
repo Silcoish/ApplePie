@@ -42,7 +42,7 @@ void Animator::Update(float dt)
 			count++;
 			if (count > 10)
 			{
-				std::cout << "Animation Broken" << std::endl;
+				//std::cout << "Animation Broken" << std::endl;
 				break;
 			}
 		}
@@ -51,9 +51,11 @@ void Animator::Update(float dt)
 }
 void Animator::SwitchAnimations(std::string anim)
 {
+	//std::cout << "Switch Hit: " << anim << std::endl;
 	auto loc = animations.find(anim);
 	if (loc != animations.end())
 	{
+		//delete curAnimation;
 		curAnimation = &loc->second;
 	}
 	else

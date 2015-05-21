@@ -14,13 +14,15 @@ private:
 	//Player Variables
 	sf::Vector2f velocity = sf::Vector2f(0,0);
 
-	float walkSpeed = 400;
-	float jumpTime = 0.3;
+	int health;
+
+	float walkSpeed;
+	float jumpTime;
 
 	bool isGrounded;
 	bool isFalling;
 
-	float timerJump = 0;
+	float timerJump;
 };
 
 #endif

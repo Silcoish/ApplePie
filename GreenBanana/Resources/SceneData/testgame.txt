@@ -1,4 +1,4 @@
-player,Player,-242.262,-92,1,0,0
+player,Player,-408.226,-92,1,0,0
 floor,floor,-120,120,1,1,0
 floor,floor,270,120,1,1,0
 floor,floor,-250,120,1,1,0
@@ -59,7 +59,7 @@ floor,floor,-640,-600,1,1,0
 floor,floor,-770,-600,1,1,0
 floor,floor,-770,-720,1,1,0
 floor,floor,-640,-720,1,1,0
-floor,floor,-510,-720,1,1,0
+floor,floor,-510,-700,1,1,0
 floor,floor,-380,-720,1,1,0
 floor,floor,-250,-720,1,1,0
 floor,floor,-120,-720,1,1,0
@@ -90,5 +90,14 @@ floor,floor,-510,-960,1,1,0
 floor,floor,-640,-960,1,1,0
 floor,floor,-770,-960,1,1,0
 health,health,-700,-460,0,1,0
-health,health,-570,-460,0,1,0
-health,health,-440,-460,0,1,0
+health,health,-650,-460,0,1,0
+health,health,-700,-420,0,1,0
+health,health,-650,-420,0,1,0
+health,health,-550,-460,0,1,0
+health,health,-550,-420,0,1,0
+health,health,-500,-460,0,1,0
+health,health,-500,-420,0,1,0
+health,health,-410,-460,0,1,0
+health,health,-410,-420,0,1,0
+health,health,-360,-460,0,1,0
+health,health,-360,-420,0,1,0

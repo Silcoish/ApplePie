@@ -87,3 +87,35 @@ void Gameobject::Render(sf::RenderWindow* rw)
 		rw->draw(line, 8, sf::Lines);
 	}
 }
+
+void Gameobject::ScaleSprites(std::map<std::string, Animation>& out_anims, float scale)
+{
+	for (auto it = out_anims.begin(); it != out_anims.end(); it++)
+	{
+		std::vector<Sprite*> animSheet = out_anims[(it)->first].sprites;
+		for (size_t j = 0; j < animSheet.size(); j++)
+		{
+			animSheet[j]->sprite->setScale(scale, scale);
+			animSheet[j]->width = animSheet[j]->sprite->getTextureRect().width * scale;
+			animSheet[j]->height = animSheet[j]->sprite->getTextureRect().height* scale;
+		}
+	}
+}
+
+void Gameobject::ScaleSprites(std::map<std::string, Animation>& out_anims, sf::Vector2f newSize)
+{
+	for (auto it = out_anims.begin(); it != out_anims.end(); it++)
+	{
+		std::vector<Sprite*> animSheet = out_anims[(it)->first].sprites;
+		for (size_t j = 0; j < animSheet.size(); j++)
+		{
+			float scaleX = newSize.x / animSheet[j]->sprite->getTextureRect().width;
+			float scaleY = newSize.y / animSheet[j]->sprite->getTextureRect().height;
+
+
+			animSheet[j]->sprite->setScale(scaleX, scaleY);
+			animSheet[j]->width = animSheet[j]->sprite->getTextureRect().width * scaleX;
+			animSheet[j]->height = animSheet[j]->sprite->getTextureRect().height* scaleY;
+		}
+	}
+}
