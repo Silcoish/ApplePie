@@ -18,7 +18,7 @@ Level::Level(std::string filePath)
 	objectsInScene.push_back(clockText);
 
 
-	GameManager::shared_instance().upgradeData.clock = 15 + GameManager::shared_instance().upgradeData.clockSpeed * 15;
+	GameManager::shared_instance().upgradeData.clock = 10 + GameManager::shared_instance().upgradeData.clockSpeed * 5;
 	std::stringstream ss;
 	ss << GameManager::shared_instance().upgradeData.clock;
 	ss.precision(2);
@@ -53,4 +53,32 @@ void Level::SceneLogic(float dt)
 	ss.precision(2);
 
 	clockText->text.setString("Clock: " + ss.str());
+}
+
+void Level::ResetScene()
+{
+	//Reset CLock
+	GameManager::shared_instance().upgradeData.clock = 10 + GameManager::shared_instance().upgradeData.clockSpeed * 5;
+	std::stringstream ss;
+	ss << GameManager::shared_instance().upgradeData.clock;
+	ss.precision(2);
+	clockText->text.setString("Clock: " + ss.str());
+
+
+	for (size_t i = 0; i < objectsInScene.size(); i++)
+	{
+		//Reset All Coins
+		if (objectsInScene[i]->GetType() == "coin")
+		{
+			objectsInScene[i]->GetAnimator().SwitchAnimations("healthFull");
+			objectsInScene[i]->GetCollider()->size = sf::Vector2f(objectsInScene[i]->GetAnimator().curSprite->width, objectsInScene[i]->GetAnimator().curSprite->height);
+		}
+
+
+
+
+
+	}
+
+
 }

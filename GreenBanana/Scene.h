@@ -22,6 +22,7 @@ public:
 	void Parse();
 	void CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth);
 	void Unload();
+	void ResetScene();
 
 	std::string GetName() { return name; };
 	std::string GetFilePath() { return filePath; };

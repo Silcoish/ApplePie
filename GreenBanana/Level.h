@@ -11,6 +11,7 @@ public:
 	Level(std::string filePath);
 	~Level();
 	void SceneLogic(float dt);
+	void ResetScene();
 
 	TextObject* clockText;
 

@@ -125,8 +125,8 @@ void UpgradeScene::SceneLogic(float dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		GameManager::shared_instance().ChangeScene(GameManager::shared_instance().GAME);
-		GameManager::shared_instance().ReloadScene(GameManager::shared_instance().GAME);
-		Unload();
+		//GameManager::shared_instance().ReloadScene(GameManager::shared_instance().GAME);
+		//Unload();
 	}
 	if (!inputManager->curState["P"] && inputManager->prevState["P"])
 	{

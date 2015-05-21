@@ -24,6 +24,9 @@ public:
 
 	sf::Vector2f GetPosition() { return position; };
 	void SetPosition(sf::Vector2f newPos) { position = newPos; };
+
+	sf::Vector2f GetStartPosition() { return startPosition; };
+	void SetStartPosition(sf::Vector2f newPos) { position = newPos; };
 	
 	bool GetIsStatic() { return isStatic; };
 	void SetIsStatic(bool value) { isStatic = value; };
@@ -59,6 +62,7 @@ protected:
 	std::string name;
 	std::string type;
 	sf::Vector2f position;
+	sf::Vector2f startPosition;
 	Animator animations;
 	BoxCollider* collider;
 	bool isStatic;
