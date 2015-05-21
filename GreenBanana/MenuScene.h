@@ -13,6 +13,8 @@ public:
 
 	TextObject* titleText = NULL;
 	TextObject* continueText = NULL;
+	float flickertime;
+	float counter;
 	
 
 private:

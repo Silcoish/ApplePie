@@ -17,6 +17,8 @@ MenuScene::MenuScene(std::string filepath)
 	continueText->text.setScale(sf::Vector2f(2, 2));
 	continueText->text.setColor(sf::Color::Blue);
 	objectsInScene.push_back(continueText);
+
+	flickertime = 1.0f;
 }
 
 
@@ -34,6 +36,23 @@ void MenuScene::Render(sf::RenderWindow* window)
 
 void MenuScene::SceneLogic(float dt)
 {
+	if (counter > flickertime)
+	{
+		if (continueText->text.getString() == "")
+			continueText->text.setString("Press Space to Begin");
+		else
+			continueText->text.setString("");
+		
+		counter = 0;
+	}
+	else
+		counter += dt;
+
+
+
+
+
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		GameManager::shared_instance().ChangeScene(GameManager::shared_instance().GAME);
