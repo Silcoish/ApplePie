@@ -1,6 +1,6 @@
 Coins
 Traps
-Player Animations (finised)
+Player Animations (finised) - DONE
 Upgrade Screen
 Invincibility Frames
 Main Menu

@@ -29,12 +29,11 @@ Health::Health(std::string type, std::string name, float x, float y, bool worldS
 
 	ScaleSprites(animations.animations, sf::Vector2f(70,60));
 
-	animations.SwitchAnimations("healthEmpty");
-	//animations.SwitchAnimations("healthFull");
+	animations.SwitchAnimations("healthFull");
 
 	collider = new BoxCollider();
 	collider->size = sf::Vector2f(animations.curSprite->width, animations.curSprite->height);
-	collider->isTrigger = false;
+	collider->isTrigger = true;
 
 	//Add to health objects
 	GameManager::shared_instance().healthObjects.push_back(this);

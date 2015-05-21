@@ -16,31 +16,43 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	SpritesheetLoader loader;
 
 	Animation idle;
+	idle.name = "idle";
 	idle.sprites = loader.Load("Resources/Animations/Player/idle.png", 144, 214, 26);
 	idle.endEvent = Animation::AnimationEndEvent::Loop;
 	idle.globalSpeed = 0.02;
 	animations.animations["idle"] = idle;
 
 	Animation walk;
+	walk.name = "walk";
 	walk.sprites = loader.Load("Resources/Animations/Player/Walk_cycle.png", 160, 224, 90);
 	walk.endEvent = Animation::AnimationEndEvent::Loop;
 	walk.globalSpeed = 0.02;
 	animations.animations["walk"] = walk;
 
 	Animation sleep;
+	sleep.name = "sleep";
 	sleep.sprites = loader.Load("Resources/Animations/Player/sleep.png", 232, 224, 36);
-	sleep.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
+	sleep.endEvent = Animation::AnimationEndEvent::Loop;
 	sleep.globalSpeed = 0.02;
 	animations.animations["sleep"] = sleep;
 
 	Animation death;
+	death.name = "death";
 	death.sprites = loader.Load("Resources/Animations/Player/death.png", 320, 232, 47);
 	death.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
 	death.globalSpeed = 0.02;
 	animations.animations["death"] = death;
 
+	Animation jump;
+	jump.name = "jump";
+	jump.sprites = loader.Load("Resources/Animations/Player/jumpShort.png", 160, 224, 11);
+	jump.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
+	jump.globalSpeed = 0.02;
+	animations.animations["jump"] = jump;
 
-	animations.SwitchAnimations("walk");
+
+
+	animations.SwitchAnimations("sleep");
 
 	collider = new BoxCollider();
 	collider->size = sf::Vector2f(100,200);
@@ -151,11 +163,11 @@ void Player::Update(float dt)
 
 	if (!isGrounded)
 	{
-		
+
 		timerJump += dt;
 	}
 
-	
+
 
 	//Collision Check
 	std::vector<Gameobject*> allCollisions;
@@ -167,23 +179,68 @@ void Player::Update(float dt)
 		isGrounded = true;
 	}
 
-	//Rotate Sprite
-	if (abs(velocity.x) > 0)
+	//Check if Pickup Coin
+	for (auto it = allCollisions.begin(); it != allCollisions.end(); it++)
 	{
-		animations.SwitchAnimations("walk");
+		if ((*it)->GetName() == "coin" && (*it)->GetCollider()->size.x > 0)
+		{
+			if (health < 12)
+			{
+				//Add 1 health
+				health++;
+				UpdateHealthObjects(health);
+
+			}
+			else
+			{
+				//Add to money for spending
+
+			}
+			(*it)->GetAnimator().SwitchAnimations("healthDestroyed");
+			(*it)->GetCollider()->size = sf::Vector2f(0, 0);
+		}
 	}
 
+	//Rotate Sprite
+	//if (velocity.x > 0)
+	//{
 
+	//	sf::Vector2f curScale = animations.curSprite->sprite->getScale();
+	//	curScale.x = abs(curScale.x);
+	//	animations.curSprite->sprite->
+	//}
+	//else if (velocity.x < 0)
+	//{
+	//	sf::Vector2f curScale = animations.curSprite->sprite->getScale();
+	//	curScale.x = abs(curScale.x) * (-1);
+	//	animations.curSprite->sprite->setScale(curScale);
+	//}
+
+
+
+	std::string curAnimName = animations.curAnimation->name;
 
 	//Set Anmiations
-	if (abs(velocity.x) > 0)
+	if (timerJump < jumpTime && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		animations.SwitchAnimations("walk");
+		if (curAnimName != "jump")
+			animations.SwitchAnimations("jump");
 	}
-	else
+	if (isGrounded)
 	{
-		animations.SwitchAnimations("walk");
+	
+		if (abs(velocity.x) > 0)
+		{
+			if (curAnimName != "walk")
+				animations.SwitchAnimations("walk");
+		}
+		else
+		{
+			if (curAnimName != "idle" && curAnimName != "sleep")
+				animations.SwitchAnimations("idle");
+		}
 	}
+
 
 	position += velocity;
 
@@ -192,4 +249,50 @@ void Player::Update(float dt)
 	GameManager::shared_instance().cameraPos = (position + sf::Vector2f(300,-100));
 
 
+}
+
+void Player::Render(sf::RenderWindow* rw)
+{
+	collider->center = position + sf::Vector2f(75, 100);
+
+	animations.curSprite->sprite->setPosition(GetPosition());
+
+
+	if (GetworldSpace())
+	{
+		animations.curSprite->sprite->setPosition(GetPosition());
+		rw->draw(*animations.curSprite->sprite);
+	}
+	else
+	{
+		collider->center += GameManager::shared_instance().cameraPos;
+		animations.curSprite->sprite->setPosition(GetPosition() + GameManager::shared_instance().cameraPos);
+		rw->draw(*animations.curSprite->sprite);
+	}
+
+	if (GameManager::shared_instance().showBoxColliders)
+	{
+		sf::Vertex line[] = { sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y - collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y - collider->size.y / 2)),
+
+			sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y - collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y + collider->size.y / 2)),
+
+			sf::Vertex(sf::Vector2f(collider->center.x + collider->size.x / 2, collider->center.y + collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y + collider->size.y / 2)),
+
+			sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y + collider->size.y / 2)),
+			sf::Vertex(sf::Vector2f(collider->center.x - collider->size.x / 2, collider->center.y - collider->size.y / 2)) };
+
+		line[0].color = sf::Color(0, 255, 0, 225);
+		line[1].color = sf::Color(0, 255, 0, 225);
+		line[2].color = sf::Color(0, 255, 0, 225);
+		line[3].color = sf::Color(0, 255, 0, 225);
+		line[4].color = sf::Color(0, 255, 0, 225);
+		line[5].color = sf::Color(0, 255, 0, 225);
+		line[6].color = sf::Color(0, 255, 0, 225);
+		line[7].color = sf::Color(0, 255, 0, 225);
+
+		rw->draw(line, 8, sf::Lines);
+	}
 }

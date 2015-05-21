@@ -9,6 +9,7 @@ public:
 	~Player();
 
 	void Update(float dt);
+	void Render(sf::RenderWindow* rw);
 
 private:
 	//Player Variables

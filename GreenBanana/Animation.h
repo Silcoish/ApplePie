@@ -6,6 +6,7 @@
 class Animation
 {
 public:
+	std::string name;
 	std::vector<Sprite*> sprites;
 	enum AnimationEndEvent
 	{
