@@ -26,7 +26,7 @@ public:
 	virtual void SceneLogic(float dt) = 0; //Individual Scene Updates
 
 	void Parse();
-	void CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
+	void CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth);
 	void Unload();
 
 	std::string GetName() { return name; };

@@ -1,13 +1,14 @@
 #include "TextObject.h"
 
 
-TextObject::TextObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic)
+TextObject::TextObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
 {
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
 	SetworldSpace(worldSpace);
 	SetIsStatic(isStatic);
+	SetDepth(depth);
 
 	if (!font.loadFromFile("Resources/Fonts/Bubblegum.ttf"))
 	{

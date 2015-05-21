@@ -5,7 +5,7 @@ class Floor :
 	public Gameobject
 {
 public:
-	Floor(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
+	Floor(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth);
 	~Floor();
 
 	void Update(float dt);
