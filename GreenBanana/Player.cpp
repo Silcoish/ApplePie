@@ -94,170 +94,172 @@ void Player::Update(float dt)
 		return;
 	animations.Update(dt);
 
-	InputMapper input = InputMapper::shared_instance();
-
-	if (input.curState["P"] && !input.prevState["P"])
-	{
-		health -= 4;
-		std::cout << "Health Down: " << health << std::endl;
-
-		//Update Health Display
-		UpdateHealthObjects(health);
-
-	}
-	if (input.curState["O"] && !input.prevState["O"])
-	{
-		health += 1;
-		std::cout << "Health Up: " << health << std::endl;
-
-		//Update Health Display
-		UpdateHealthObjects(health);
-	}
-
-	if (input.curState["1"] && !input.prevState["1"])
-	{
-		animations.SwitchAnimations("idle");
-	}
-	if (input.curState["2"] && !input.prevState["2"])
-	{
-		animations.SwitchAnimations("death");
-	}
-	if (input.curState["3"] && !input.prevState["3"])
-	{
-		animations.SwitchAnimations("sleep");
-	}
-	if (input.curState["4"] && !input.prevState["4"])
-	{
-		animations.SwitchAnimations("walk");
-	}
-
-
-
-
-	//Input
-	//Movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		velocity.x = -walkSpeed * dt;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		velocity.x = walkSpeed * dt;
-	}
-	else
-	{
-		velocity.x = 0;
-	}
-	//Jump
-	if (timerJump < jumpTime && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		velocity.y = -1500 * dt;
-		isFalling = false;
-		isGrounded = false;
-	}
-	else
-	{
-		isFalling = true;
-		velocity.y = 1500 * dt;
-	}
-
-	if (!isGrounded)
-	{
-
-		timerJump += dt;
-	}
-
-
-
-	//Collision Check
-	std::vector<Gameobject*> allCollisions;
-	bool collision = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, velocity);
-
-	if (velocity.y == 0 && isFalling)
-	{
-		timerJump = 0;
-		isGrounded = true;
-	}
-
-	//Check if Pickup Coin
-	for (auto it = allCollisions.begin(); it != allCollisions.end(); it++)
-	{
-		if ((*it)->GetName() == "coin" && (*it)->GetCollider()->size.x > 0)
-		{
-			if (health < 20)
-			{
-				//Add 1 health
-				health++;
-				UpdateHealthObjects(health);
-
-			}
-			else
-			{
-				//Add to money for spending
-				GameManager::shared_instance().upgradeData.coins ++;
-				std::cout << GameManager::shared_instance().upgradeData.coins << std::endl;
-
-			}
-			(*it)->GetAnimator().SwitchAnimations("healthDestroyed");
-			(*it)->GetCollider()->size = sf::Vector2f(0, 0);
-		}
-	}
-
-	//Rotate Sprite
-	//if (velocity.x > 0)
-	//{
-
-	//	sf::Vector2f curScale = animations.curSprite->sprite->getScale();
-	//	curScale.x = abs(curScale.x);
-	//	animations.curSprite->sprite->
-	//}
-	//else if (velocity.x < 0)
-	//{
-	//	sf::Vector2f curScale = animations.curSprite->sprite->getScale();
-	//	curScale.x = abs(curScale.x) * (-1);
-	//	animations.curSprite->sprite->setScale(curScale);
-	//}
-
-
-
 	std::string curAnimName = animations.curAnimation->name;
 
-	//Set Anmiations
-	if (timerJump < jumpTime && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	if (isDead)
 	{
-		if (curAnimName != "jump")
-			animations.SwitchAnimations("jump");
-	}
-	if (isGrounded)
-	{
-	
-		if (abs(velocity.x) > 0)
+		if (curAnimName != "death")
+			animations.SwitchAnimations("death");
+
+		timerDeath += dt;
+
+		if (timerDeath > 3)
 		{
-			if (curAnimName != "walk")
-				animations.SwitchAnimations("walk");
+			GameManager::shared_instance().ChangeScene(GameManager::GameStates::UPGRADE);
+		}
+	}
+	else
+	{
+		InputMapper input = InputMapper::shared_instance();
+
+		if (input.curState["P"] && !input.prevState["P"])
+		{
+			health -= 4;
+			std::cout << "Health Down: " << health << std::endl;
+
+			//Update Health Display
+			UpdateHealthObjects(health);
+
+		}
+		if (input.curState["O"] && !input.prevState["O"])
+		{
+			health += 1;
+			std::cout << "Health Up: " << health << std::endl;
+
+			//Update Health Display
+			UpdateHealthObjects(health);
+		}
+
+
+		//Input
+		//Movement
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		{
+			velocity.x = -walkSpeed * dt;
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		{
+			velocity.x = walkSpeed * dt;
 		}
 		else
 		{
-			if (curAnimName != "idle" && curAnimName != "sleep")
-				animations.SwitchAnimations("idle");
+			velocity.x = 0;
 		}
+		//Jump
+		if (timerJump < jumpTime && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			velocity.y = -1500 * dt;
+			isFalling = false;
+			isGrounded = false;
+		}
+		else
+		{
+			isFalling = true;
+			velocity.y = 1500 * dt;
+		}
+
+		if (!isGrounded)
+		{
+
+			timerJump += dt;
+		}
+
+
+
+		//Collision Check
+		std::vector<Gameobject*> allCollisions;
+		bool collision = GetCurrentScene()->CollisionCheck(GetCollider(), allCollisions, velocity);
+
+		if (velocity.y == 0 && isFalling)
+		{
+			timerJump = 0;
+			isGrounded = true;
+		}
+
+		//Check if Pickup Coin
+		for (auto it = allCollisions.begin(); it != allCollisions.end(); it++)
+		{
+			if ((*it)->GetName() == "coin" && (*it)->GetCollider()->size.x > 0)
+			{
+				if (health < 20)
+				{
+					//Add 1 health
+					health++;
+					UpdateHealthObjects(health);
+
+				}
+				else
+				{
+					//Add to money for spending
+					GameManager::shared_instance().upgradeData.coins++;
+					std::cout << GameManager::shared_instance().upgradeData.coins << std::endl;
+
+				}
+				(*it)->GetAnimator().SwitchAnimations("healthDestroyed");
+				(*it)->GetCollider()->size = sf::Vector2f(0, 0);
+			}
+		}
+
+		//Rotate Sprite
+		//if (velocity.x > 0)
+		//{
+
+		//	sf::Vector2f curScale = animations.curSprite->sprite->getScale();
+		//	curScale.x = abs(curScale.x);
+		//	animations.curSprite->sprite->
+		//}
+		//else if (velocity.x < 0)
+		//{
+		//	sf::Vector2f curScale = animations.curSprite->sprite->getScale();
+		//	curScale.x = abs(curScale.x) * (-1);
+		//	animations.curSprite->sprite->setScale(curScale);
+		//}
+
+
+
+
+
+		//Set Anmiations
+		if (timerJump < jumpTime && sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			if (curAnimName != "jump")
+				animations.SwitchAnimations("jump");
+		}
+		if (isGrounded)
+		{
+
+			if (abs(velocity.x) > 0)
+			{
+				if (curAnimName != "walk")
+					animations.SwitchAnimations("walk");
+			}
+			else
+			{
+				if (curAnimName != "idle" && curAnimName != "sleep")
+					animations.SwitchAnimations("idle");
+			}
+		}
+
+
+		position += velocity;
+
+		//Run CLock
+		if (curAnimName != "sleep")
+		{
+			GameManager::shared_instance().upgradeData.clock -= (dt * (6 - (health / 4)));
+			GameManager::shared_instance().globalClockSpeed = ((6 - (health / 4)));
+			std::cout << (6 - (health / 4)) << std::endl;
+
+			if (GameManager::shared_instance().upgradeData.clock <= 0)
+			{
+				isDead = true;
+			}
+		}
+
+
+		//SetCamPos
+		GameManager::shared_instance().cameraPos = (position + sf::Vector2f(300, -100));
 	}
-
-
-	position += velocity;
-
-	//Run CLock
-	if (curAnimName != "sleep")
-	{
-		GameManager::shared_instance().upgradeData.clock -= (dt * (6 - (health/4)));
-		GameManager::shared_instance().globalClockSpeed = ((6 - (health / 4)));
-		std::cout << (6 - (health / 4)) << std::endl;
-	}
-
-
-	//SetCamPos
-	GameManager::shared_instance().cameraPos = (position + sf::Vector2f(300,-100));
-
 
 }
 

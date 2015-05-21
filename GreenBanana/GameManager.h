@@ -50,6 +50,7 @@ public:
 		auto loc = scenes.find(newState);
 		if (loc != scenes.end())
 		{
+			ReloadScene(newState);
 			curScene = loc->second; 
 			std::cout << "Changed scene" << std::endl;
 		}

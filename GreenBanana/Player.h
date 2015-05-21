@@ -24,6 +24,9 @@ private:
 	bool isFalling;
 
 	float timerJump;
+
+	bool isDead = false;
+	float timerDeath = 0;
 };
 
 #endif
