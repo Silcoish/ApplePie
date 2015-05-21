@@ -5,6 +5,7 @@ LevelBackground::LevelBackground(std::string type, std::string name, float x, fl
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
+	SetStartPosition(sf::Vector2f(x, y));
 	SetworldSpace(worldSpace);
 	SetIsStatic(isStatic);
 	SetDepth(-100);

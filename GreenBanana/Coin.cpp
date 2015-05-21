@@ -6,6 +6,7 @@ Coin::Coin(std::string type, std::string name, float x, float y, bool worldSpace
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
+	SetStartPosition(sf::Vector2f(x, y));
 	SetworldSpace(worldSpace);
 	SetIsStatic(isStatic);
 	SetDepth(depth);
@@ -43,4 +44,9 @@ Coin::~Coin()
 void Coin::Update(float dt)
 {
 	animations.Update(dt);
+}
+
+void Coin::ResetObject()
+{
+	SetPosition(GetStartPosition());
 }

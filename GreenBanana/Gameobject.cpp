@@ -13,9 +13,9 @@ std::string Gameobject::Serialize()
 	ss << ",";
 	ss << GetName();
 	ss << ",";
-	ss << GetPosition().x;
+	ss << GetStartPosition().x;
 	ss << ",";
-	ss << GetPosition().y;
+	ss << GetStartPosition().y;
 	ss << ",";
 	ss << GetworldSpace();
 	ss << ",";

@@ -33,6 +33,7 @@ void Scene::Update(float dt)
 			newPos.y = (float)((int)(newPos.y / 10)) * 10;
 
 
+			currentObject->SetStartPosition(newPos);
 			currentObject->SetPosition(newPos);
 		}
 

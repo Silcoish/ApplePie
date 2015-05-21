@@ -6,6 +6,7 @@ Trap::Trap(std::string type, std::string name, float x, float y, bool worldSpace
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
+	SetStartPosition(sf::Vector2f(x, y));
 	SetworldSpace(worldSpace);
 	SetIsStatic(isStatic);
 	SetDepth(depth);

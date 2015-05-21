@@ -5,6 +5,7 @@ Lollipop::Lollipop(std::string type, std::string name, float x, float y, bool wo
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
+	SetStartPosition(sf::Vector2f(x, y));
 	SetworldSpace(worldSpace);
 	SetIsStatic(isStatic);
 	SetDepth(depth);

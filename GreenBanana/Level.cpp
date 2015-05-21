@@ -67,18 +67,6 @@ void Level::ResetScene()
 
 	for (size_t i = 0; i < objectsInScene.size(); i++)
 	{
-		//Reset All Coins
-		if (objectsInScene[i]->GetType() == "coin")
-		{
-			objectsInScene[i]->GetAnimator().SwitchAnimations("healthFull");
-			objectsInScene[i]->GetCollider()->size = sf::Vector2f(objectsInScene[i]->GetAnimator().curSprite->width, objectsInScene[i]->GetAnimator().curSprite->height);
-		}
-
-
-
-
-
+		objectsInScene[i]->ResetObject();
 	}
-
-
 }

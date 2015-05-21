@@ -13,6 +13,7 @@ TextObject::TextObject(std::string type, std::string name, float x, float y, boo
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
+	SetStartPosition(sf::Vector2f(x, y));
 	SetworldSpace(false);
 	SetIsStatic(isStatic);
 	SetDepth(depth);

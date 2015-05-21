@@ -8,6 +8,7 @@ public:
 	~Coin();
 
 	void Update(float dt);
+	void ResetObject();
 };
 
 #endif
