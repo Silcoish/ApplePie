@@ -300,19 +300,26 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 	else if (type == "Floor" || type == "floor")
 	{
 		Floor* newObject = new Floor(type, name, x, y, worldSpace, isStatic, depth);
+		newObject->SetCurrentScene(this);
 		objectsInScene.push_back(newObject);
 	}
 	else if (type == "Coin" || type == "coin")
 	{
 		Coin* newObject = new Coin(type, name, x, y, worldSpace, isStatic, depth);
+		newObject->SetCurrentScene(this);
+		objectsInScene.push_back(newObject);
 	}
 	else if (type == "Trap" || type == "Trap")
 	{
 		Trap* newObject = new Trap(type, name, x, y, worldSpace, isStatic, depth);
+		newObject->SetCurrentScene(this);
+		objectsInScene.push_back(newObject);
 	}
 	else if (type == "Health" || type == "health")
 	{
 		Health* newObject = new Health(type, name, x, y, worldSpace, isStatic, depth);
+		newObject->SetCurrentScene(this);
+		objectsInScene.push_back(newObject);
 	}
 
 }
