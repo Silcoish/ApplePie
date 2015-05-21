@@ -1,4 +1,4 @@
-player,Player,-510,-90,1,0,0
+player,Player,-510,-92,1,0,0
 floor,floor,-120,120,1,1,0
 floor,floor,270,120,1,1,0
 floor,floor,-250,120,1,1,0
@@ -89,3 +89,4 @@ floor,floor,-770,-840,1,1,0
 floor,floor,-510,-960,1,1,0
 floor,floor,-640,-960,1,1,0
 floor,floor,-770,-960,1,1,0
+health,health,-680,-480,0,1,1

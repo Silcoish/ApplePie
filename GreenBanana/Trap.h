@@ -9,8 +9,7 @@ public:
 	Trap(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth);
 	~Trap();
 
-	void Update(float dt);
-	void Render(sf::RenderWindow* window);
+	virtual void Update(float dt);
 	
 };
 #endif

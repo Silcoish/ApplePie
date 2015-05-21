@@ -79,6 +79,17 @@ void Scene::Update(float dt)
 			}
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num5))
+		{
+			if (currentObject == nullptr)
+			{
+				Trap* trap = new Trap("trap", "trap", pos.x, pos.y, 1, 1, 0);
+				trap->SetCurrentScene(this);
+				currentObject = trap;
+				objectsInScene.push_back(trap);
+			}
+		}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			GameManager::shared_instance().cameraPos.x -= GameManager::shared_instance().cameraMoveSpeed * dt;
 
@@ -282,15 +293,15 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 	}
 	else if (type == "Coin" || type == "coin")
 	{
-		//Coin* newObject = new Coin(type, name, x, y, worldSpace, isStatic, depth);
+		Coin* newObject = new Coin(type, name, x, y, worldSpace, isStatic, depth);
 	}
 	else if (type == "Trap" || type == "Trap")
 	{
-		//Trap* newObject = new Trap(type, name, x, y, worldSpace, isStatic);
+		Trap* newObject = new Trap(type, name, x, y, worldSpace, isStatic, depth);
 	}
 	else if (type == "Health" || type == "health")
 	{
-		//Health* newObject = new Health(type, name, x, y, worldSpace, isStatic);
+		Health* newObject = new Health(type, name, x, y, worldSpace, isStatic, depth);
 	}
 
 }

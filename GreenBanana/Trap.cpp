@@ -10,14 +10,19 @@ Trap::Trap(std::string type, std::string name, float x, float y, bool worldSpace
 	SetIsStatic(isStatic);
 	SetDepth(depth);
 
-	// set the trap sprite
-	animations;
 	Animation idle;
 	SpritesheetLoader loader;
-	idle.sprites = loader.Load("Resources/Animations/Choc/choc.png", 385, 98, 1);
+	idle.sprites = loader.Load("Resources/Animations/Choc/choc.png", 338, 100, 65);
 	idle.endEvent = Animation::AnimationEndEvent::Loop;
+	idle.sprites[0]->sprite->setScale(sf::Vector2f((340 / 338), (100 / 100)));
+	idle.sprites[0]->width = 340;
+	idle.sprites[0]->height = 100;
 	animations.animations["idle"] = idle;
 	animations.SwitchAnimations("idle");
+
+	collider = new BoxCollider();
+	collider->size = sf::Vector2f(animations.curSprite->width, animations.curSprite->height);
+	collider->isTrigger = false;
 }
 
 Trap::~Trap()
@@ -26,11 +31,7 @@ Trap::~Trap()
 
 void Trap::Update(float dt)
 {
+	animations.Update(dt);
 
-}
-
-void Trap::Render(sf::RenderWindow* window)
-{
-	animations.curSprite->sprite->setPosition(GetPosition());
-	window->draw(*animations.curSprite->sprite);
+	collider->center = position + sf::Vector2f(animations.curSprite->width / 2, animations.curSprite->height / 2);
 }
