@@ -5,7 +5,7 @@
 class Player : public Gameobject
 {
 public:
-	Player(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic);
+	Player(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic , int depth);
 	~Player();
 
 	void Update(float dt);

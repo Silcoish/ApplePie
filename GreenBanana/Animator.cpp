@@ -25,10 +25,27 @@ void Animator::Update(float dt)
 {
 	timerFrame += dt;
 
-	if (timerFrame > curSprite->animTime )
+	int count = 0;
+
+	if (curAnimation->globalSpeed == 0)
 	{
 		NextFrame();
-		curSprite = curAnimation->sprites[curFrame];
+	}
+	else
+	{
+		while (timerFrame > curAnimation->globalSpeed)
+		{
+			timerFrame -= curAnimation->globalSpeed;
+			NextFrame();
+			curSprite = curAnimation->sprites[curFrame];
+
+			count++;
+			if (count > 10)
+			{
+				std::cout << "Animation Broken" << std::endl;
+				break;
+			}
+		}
 	}
 
 }

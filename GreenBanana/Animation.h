@@ -15,7 +15,7 @@ public:
 	AnimationEndEvent endEvent;
 
 	std::string nextAnimation;
-	float globalSpeed;
+	float globalSpeed = 0;
 };
 
 #endif
