@@ -1,6 +1,9 @@
 #ifndef LOLLIPOP_H
 #define LOLLIPOP_H
+#include <ctime>
+#include <specstrings.h>
 #include "Gameobject.h"
+
 class Lollipop :
 	public Gameobject
 {

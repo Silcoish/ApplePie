@@ -13,12 +13,11 @@ LevelBackground::LevelBackground(std::string type, std::string name, float x, fl
 	Animation idle;
 	SpritesheetLoader loader;
 	idle.sprites = loader.Load("Resources/Backgrounds/BG_w_cloud.png", 2048, 2048, 1);
-	/*idle.sprites[0]->sprite->setScale(sf::Vector2f((3508 / 720), (2480 / 480)));
-	idle.sprites[0]->width = 720;
-	idle.sprites[0]->height = 480;
-	*/idle.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
+	idle.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
 	animations.animations["idle"] = idle;
 	animations.SwitchAnimations("idle");
+
+	ScaleSprites(animations.animations, sf::Vector2f(720 * 2, 480 * 2));
 
 	collider = new BoxCollider();
 	collider->size = sf::Vector2f(3.0f, 3.0f);
