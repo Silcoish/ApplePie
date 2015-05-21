@@ -11,6 +11,7 @@ public:
 	int CollectionAreaCost =5;
 	int coins = 10;
 	bool doubleJump;
+	float clock = 30.0;
 };
 
 #endif

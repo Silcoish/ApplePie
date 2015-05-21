@@ -74,6 +74,7 @@
   <ItemGroup>
     <ClCompile Include="Animator.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="Gameobject.cpp" />
@@ -96,6 +97,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Coin.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameManager.h" />
