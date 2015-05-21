@@ -1,0 +1,18 @@
+Coins
+Traps
+Player Animations (finised)
+Upgrade Screen
+Invincibility Frames
+Main Menu
+Actually Upgrade stats
+Clock
+End Level (maybe a flag)
+Splenda (thwomp)
+
+
+----------------------------------
+
+Clean Up
+Particle System
+Animations from File
+

@@ -1,3 +1,4 @@
+levelBackground,levelBackground,-720,-480,0,1,-20
 player,Player,142.817,-92,1,0,0
 floor,floor,-120,120,1,1,0
 floor,floor,270,120,1,1,0
