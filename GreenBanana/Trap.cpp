@@ -12,11 +12,12 @@ Trap::Trap(std::string type, std::string name, float x, float y, bool worldSpace
 
 	Animation idle;
 	SpritesheetLoader loader;
-	idle.sprites = loader.Load("Resources/Animations/Choc/choc.png", 338, 100, 65);
+	idle.sprites = loader.Load("Resources/Animations/Choc/choc.png", 388, 100, 65);
 	idle.endEvent = Animation::AnimationEndEvent::Loop;
-	idle.sprites[0]->sprite->setScale(sf::Vector2f((340 / 338), (100 / 100)));
-	idle.sprites[0]->width = 340;
-	idle.sprites[0]->height = 100;
+	//idle.sprites[0]->sprite->setScale(sf::Vector2f((380 / 384), (100 / 98)));
+	//idle.sprites[0]->width = 380;
+	//idle.sprites[0]->height = 100;
+	idle.globalSpeed = 0.02;
 	animations.animations["idle"] = idle;
 	animations.SwitchAnimations("idle");
 

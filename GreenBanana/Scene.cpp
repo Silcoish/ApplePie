@@ -90,6 +90,17 @@ void Scene::Update(float dt)
 			}
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num6))
+		{
+			if (currentObject == nullptr)
+			{
+				Coin* coin = new Coin("coin", "coin", pos.x, pos.y, 1, 1, 0);
+				coin->SetCurrentScene(this);
+				currentObject = coin;
+				objectsInScene.push_back(coin);
+			}
+		}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			GameManager::shared_instance().cameraPos.x -= GameManager::shared_instance().cameraMoveSpeed * dt;
 
