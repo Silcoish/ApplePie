@@ -184,7 +184,7 @@ void Player::Update(float dt)
 	{
 		if ((*it)->GetName() == "coin" && (*it)->GetCollider()->size.x > 0)
 		{
-			if (health < 12)
+			if (health < 20)
 			{
 				//Add 1 health
 				health++;
@@ -194,6 +194,8 @@ void Player::Update(float dt)
 			else
 			{
 				//Add to money for spending
+				GameManager::shared_instance().upgradeData.coins ++;
+				std::cout << GameManager::shared_instance().upgradeData.coins << std::endl;
 
 			}
 			(*it)->GetAnimator().SwitchAnimations("healthDestroyed");

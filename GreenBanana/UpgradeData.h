@@ -9,7 +9,7 @@ public:
 	int clockSpeedCost = 5;
 	int jumpHeightCost = 5;
 	int CollectionAreaCost =5;
-	int coins = 10;
+	int coins = 0;
 	bool doubleJump;
 };
 
