@@ -7,6 +7,7 @@
 #include <math.h>
 #include "GameManager.h"
 #include "Level.h"
+#include "UpgradeScene.h"
 #include "InputManager.h"
 
 using namespace std::chrono;
@@ -76,6 +77,11 @@ int main()
 			InputMapper::shared_instance().curState["LControl"] =		sf::Keyboard::isKeyPressed(sf::Keyboard::LControl);
 			InputMapper::shared_instance().curState["P"] = sf::Keyboard::isKeyPressed(sf::Keyboard::P);
 			InputMapper::shared_instance().curState["O"] = sf::Keyboard::isKeyPressed(sf::Keyboard::O);
+
+			InputMapper::shared_instance().curState["P"] = sf::Keyboard::isKeyPressed(sf::Keyboard::P);
+			InputMapper::shared_instance().curState["L"] = sf::Keyboard::isKeyPressed(sf::Keyboard::L);
+			InputMapper::shared_instance().curState["O"] = sf::Keyboard::isKeyPressed(sf::Keyboard::O);
+			InputMapper::shared_instance().curState["K"] = sf::Keyboard::isKeyPressed(sf::Keyboard::K);
 
 
 			//Update

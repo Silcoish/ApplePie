@@ -9,7 +9,6 @@ public:
 	Level();
 	Level(std::string filePath);
 	~Level();
-	//void Render(sf::RenderWindow* rw);
 	void SceneLogic(float dt);
 };
 

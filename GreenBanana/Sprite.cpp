@@ -21,7 +21,8 @@ Sprite::Sprite(sf::Texture* txtr, sf::Rect<int> rect)
 
 Sprite::~Sprite()
 {
-
+	delete sprite;
+	delete texture;
 }
 
 void Sprite::LoadTexture(std::string fileLocation)
@@ -44,6 +45,8 @@ void Sprite::LoadTexture(std::string fileLocation)
 		}
 		texture->update(pixels);
 	}
+
+	sprite->setTexture(*texture);
 
 	width = texture->getSize().x;
 	height = texture->getSize().y;

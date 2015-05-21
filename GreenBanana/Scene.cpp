@@ -5,6 +5,8 @@
 #include "Coin.h"
 #include "Trap.h"
 #include "Health.h"
+#include "Lollipop.h"
+#include "LevelBackground.h"
 
 void Scene::Update(float dt)
 {
@@ -60,11 +62,10 @@ void Scene::Update(float dt)
 		{
 			if (currentObject == nullptr)
 			{
-				TextObject* text = new TextObject("text", "text", pos.x, pos.y, 1, 1, 0);
-				text->SetCurrentScene(this);
-				text->text.setString("working");
-				currentObject = text;
-				objectsInScene.push_back(text);
+				LevelBackground* bg = new LevelBackground("levelBackground", "levelBackground", pos.x, pos.y, 0, 1, -1);
+				bg->SetCurrentScene(this);
+				currentObject = bg;
+				objectsInScene.push_back(bg);
 			}
 		}
 
@@ -101,6 +102,17 @@ void Scene::Update(float dt)
 			}
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7))
+		{
+			if (currentObject == nullptr)
+			{
+				Lollipop* lollipop = new Lollipop("lollipop", "lollipop", pos.x, pos.y, 1, 1, 0);
+				lollipop->SetCurrentScene(this);
+				currentObject = lollipop;
+				objectsInScene.push_back(lollipop);
+			}
+		}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			GameManager::shared_instance().cameraPos.x -= GameManager::shared_instance().cameraMoveSpeed * dt;
 
@@ -128,6 +140,7 @@ void Scene::Update(float dt)
 			{
 				currentObject->SetDepth(currentObject->GetDepth() + 1);
 				SortGameobjects(objectsInScene);
+				std::cout << "New Depth: " << currentObject->GetDepth() << std::endl;
 			}
 		}
 
@@ -137,6 +150,7 @@ void Scene::Update(float dt)
 			{
 				currentObject->SetDepth(currentObject->GetDepth() - 1);
 				SortGameobjects(objectsInScene);
+				std::cout << "New Depth: " << currentObject->GetDepth() << std::endl;
 			}
 		}
 
@@ -222,6 +236,7 @@ void Scene::Update(float dt)
 
 void Scene::Render(sf::RenderWindow* window)
 {
+
 	for (auto it = objectsInScene.begin(); it != objectsInScene.end(); ++it)
 	{
 		(*it)->Render(window);
@@ -320,6 +335,12 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		Health* newObject = new Health(type, name, x, y, worldSpace, isStatic, depth);
 		newObject->SetCurrentScene(this);
 		objectsInScene.push_back(newObject);
+	}
+	else if (type == "Lollipop" || type == "lollipop")
+	{
+		Lollipop* lollipop = new Lollipop(type, name, x, y, worldSpace, isStatic, depth);
+		lollipop->SetCurrentScene(this);
+		objectsInScene.push_back(lollipop);
 	}
 
 }

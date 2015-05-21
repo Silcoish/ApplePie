@@ -79,6 +79,8 @@
     <ClCompile Include="Gameobject.cpp" />
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelBackground.cpp" />
+    <ClCompile Include="Lollipop.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -99,6 +101,8 @@
     <ClInclude Include="Health.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelBackground.h" />
+    <ClInclude Include="Lollipop.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sprite.h" />
