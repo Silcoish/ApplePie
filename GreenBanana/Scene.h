@@ -38,6 +38,8 @@ public:
 	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions);
 	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions, sf::Vector2f& offset);
 
+	void SortGameobjects(std::vector<Gameobject*>& gameObjects);
+
 protected:
 	std::string name;
 	std::string filePath;

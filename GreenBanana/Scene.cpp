@@ -394,3 +394,26 @@ void Scene::SceneLogic(float dt)
 {
 
 }
+
+void SortGameobjects(std::vector<Gameobject*>& gameObjects)
+{
+	bool somethingChanged = false;
+
+	do
+	{
+		somethingChanged = false;
+		for (size_t i = 0; i < gameObjects.size() - 1; i++)
+		{
+			if (gameObjects[i]->GetDepth() > gameObjects[i + 1]->GetDepth())
+			{
+				Gameobject* temp = gameObjects[i];
+
+				gameObjects[i] = gameObjects[i + 1];
+
+				gameObjects[i + 1] = temp;
+
+				somethingChanged = true;
+			}
+		}
+	} while (somethingChanged)
+}
