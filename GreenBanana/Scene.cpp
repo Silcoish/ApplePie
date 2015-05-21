@@ -6,6 +6,7 @@
 #include "Trap.h"
 #include "Health.h"
 #include "Lollipop.h"
+#include "Splenda.h"
 #include "LevelBackground.h"
 
 void Scene::Update(float dt)
@@ -110,6 +111,17 @@ void Scene::Update(float dt)
 				lollipop->SetCurrentScene(this);
 				currentObject = lollipop;
 				objectsInScene.push_back(lollipop);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num8))
+		{
+			if (currentObject == nullptr)
+			{
+				Splenda* splenda = new Splenda("splenda", "splenda", pos.x, pos.y, 1, 1, 0);
+				splenda->SetCurrentScene(this);
+				currentObject = splenda;
+				objectsInScene.push_back(splenda);
 			}
 		}
 
@@ -347,6 +359,12 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		LevelBackground* levelBackground = new LevelBackground(type, name, x, y, worldSpace, isStatic, depth);
 		levelBackground->SetCurrentScene(this);
 		objectsInScene.push_back(levelBackground);
+	}
+	else if (type == "Splenda" || type == "splenda")
+	{
+		Splenda* splenda = new Splenda(type, name, x, y, worldSpace, isStatic, depth);
+		splenda->SetCurrentScene(this);
+		objectsInScene.push_back(splenda);
 	}
 
 }

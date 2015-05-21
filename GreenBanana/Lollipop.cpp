@@ -17,7 +17,6 @@ Lollipop::Lollipop(std::string type, std::string name, float x, float y, bool wo
 
 	//std::srand(std::rand());
 
-
 	Animation walk;
 	SpritesheetLoader loader;
 	walk.sprites = loader.Load(ss.str(), 225, 439, 1);
