@@ -20,6 +20,7 @@ public:
 	sf::Vector2f cameraPos;
 	sf::RenderWindow* rw;
 
+	int globalClockSpeed = 1;
 	std::vector<Gameobject*> healthObjects;
 
 	enum GameStates

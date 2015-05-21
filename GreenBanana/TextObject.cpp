@@ -1,4 +1,5 @@
 #include "TextObject.h"
+#include "GameManager.h"
 
 TextObject::TextObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
 {
@@ -28,7 +29,8 @@ TextObject::~TextObject()
 void TextObject::Render(sf::RenderWindow* window)
 {
 	collider->center = position + sf::Vector2f(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
-	text.setPosition(GetPosition());
+	collider->center += GameManager::shared_instance().cameraPos;
+	text.setPosition(GetPosition() + GameManager::shared_instance().cameraPos);
 	window->draw(text);
 }
 

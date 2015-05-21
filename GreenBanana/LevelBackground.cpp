@@ -7,7 +7,7 @@ LevelBackground::LevelBackground(std::string type, std::string name, float x, fl
 	SetPosition(sf::Vector2f(x, y));
 	SetworldSpace(worldSpace);
 	SetIsStatic(isStatic);
-	SetDepth(depth);
+	SetDepth(-100);
 
 	// set the floor sprite
 	Animation idle;

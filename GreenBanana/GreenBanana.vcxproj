@@ -85,6 +85,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Rain.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Splenda.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="Lollipop.h" />
     <ClInclude Include="MenuScene.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rain.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Splenda.h" />
     <ClInclude Include="Sprite.h" />

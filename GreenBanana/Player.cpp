@@ -246,6 +246,14 @@ void Player::Update(float dt)
 
 	position += velocity;
 
+	//Run CLock
+	if (curAnimName != "sleep")
+	{
+		GameManager::shared_instance().upgradeData.clock -= (dt * (6 - (health/4)));
+		GameManager::shared_instance().globalClockSpeed = ((6 - (health / 4)));
+		std::cout << (6 - (health / 4)) << std::endl;
+	}
+
 
 	//SetCamPos
 	GameManager::shared_instance().cameraPos = (position + sf::Vector2f(300,-100));
