@@ -13,6 +13,8 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	SetIsStatic(isStatic);
 	SetDepth(depth);
 
+	startPosition = sf::Vector2f(x, y);
+
 	SpritesheetLoader loader;
 
 	Animation idle;
@@ -196,7 +198,18 @@ void Player::Update(float dt)
 
 				}
 				(*it)->GetAnimator().SwitchAnimations("healthDestroyed");
-				(*it)->GetCollider()->size = sf::Vector2f(0, 0);
+				//(*it)->GetCollider()->size = sf::Vector2f(0, 0);
+				(*it)->SetPosition(sf::Vector2f(5000 + std::rand() % 1000, 5000 + std::rand() % 1000));
+			}
+			else if ((*it)->GetType() == "trap" && (*it)->GetCollider()->size.x > 0)
+			{
+				health -= 4;
+				UpdateHealthObjects(health);
+			}
+			else if ((*it)->GetType() == "splenda" && (*it)->GetCollider()->size.x > 0)
+			{
+				health -= 4;
+				UpdateHealthObjects(health);
 			}
 		}
 
@@ -246,9 +259,8 @@ void Player::Update(float dt)
 		//Run CLock
 		if (curAnimName != "sleep")
 		{
-			GameManager::shared_instance().upgradeData.clock -= (dt * (6 - (health / 4)));
-			GameManager::shared_instance().globalClockSpeed = ((6 - (health / 4)));
-			std::cout << (6 - (health / 4)) << std::endl;
+			GameManager::shared_instance().globalClockSpeed = ((6 - (health / 4)) * 2) - 1;
+			GameManager::shared_instance().upgradeData.clock -= (dt * GameManager::shared_instance().globalClockSpeed);
 
 			if (GameManager::shared_instance().upgradeData.clock <= 0)
 			{
@@ -307,4 +319,10 @@ void Player::Render(sf::RenderWindow* rw)
 
 		rw->draw(line, 8, sf::Lines);
 	}
+}
+
+void Player::ResetObject()
+{
+	position = startPosition;
+	health = 20;
 }

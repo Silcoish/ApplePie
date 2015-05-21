@@ -485,7 +485,10 @@ void Scene::SceneLogic(float dt)
 
 }
 
-void Scene::ResetScene();
+void Scene::ResetScene()
+{
+
+}
 
 void Scene::SortGameobjects(std::vector<Gameobject*>& gameObjects)
 {
