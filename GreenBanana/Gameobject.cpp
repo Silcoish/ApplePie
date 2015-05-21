@@ -20,6 +20,8 @@ std::string Gameobject::Serialize()
 	ss << GetworldSpace();
 	ss << ",";
 	ss << GetIsStatic();
+	ss << ",";
+	ss << GetDepth();
 	ss << std::endl;
 
 	return ss.str();

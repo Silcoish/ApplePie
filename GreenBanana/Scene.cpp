@@ -28,15 +28,12 @@ void Scene::Update(float dt)
 			currentObject->SetPosition(newPos);
 		}
 
-
-
-
 		//Key pressed, make new objects
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 		{
 			if (currentObject == nullptr)
 			{
-				Player* player = new Player("player", "player", pos.x - 80, pos.y - 112, 1, 0);
+				Player* player = new Player("player", "player", pos.x - 80, pos.y - 112, 1, 0, 0);
 				player->SetCurrentScene(this);
 				currentObject = player;
 				objectsInScene.push_back(player);
@@ -87,6 +84,23 @@ void Scene::Update(float dt)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
 			GameManager::shared_instance().cameraPos = sf::Vector2f(0.0f, 0.0f);
 
+		if (!inputManager->curState["Equal"] && inputManager->prevState["Equal"])
+		{
+			if (currentObject != nullptr)
+			{
+				currentObject->SetDepth(currentObject->GetDepth() + 1);
+				SortGameobjects();
+			}
+		}
+
+		if (!inputManager->curState["Dash"] && inputManager->prevState["Dash"])
+		{
+			if (currentObject != nullptr)
+			{
+				currentObject->SetDepth(currentObject->GetDepth() - 1);
+				SortGameobjects();
+			}
+		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Delete))
 		{
@@ -137,26 +151,6 @@ void Scene::Update(float dt)
 				}
 			}
 		}
-
-		//Mouse release, place object
-		//if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		//{
-		//	if (currentObject != nullptr)
-		//		currentObject = NULL;
-		//	else
-		//	{
-		//		std::vector<Gameobject*> allCollisions;
-		//		BoxCollider* mouseBox = new BoxCollider();
-		//		mouseBox->center = sf::Vector2f(pos.x, pos.y);
-		//		mouseBox->size = sf::Vector2f(10.0f, 10.0f);
-		//		bool temp = CollisionCheck(mouseBox, allCollisions);
-
-		//		if (temp)
-		//		{
-		//			currentObject = *allCollisions.begin();
-		//		}
-		//	}
-		//}
 	}
 	else
 	{
