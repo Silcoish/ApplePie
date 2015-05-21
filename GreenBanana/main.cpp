@@ -13,38 +13,14 @@ using namespace std::chrono;
 
 const float targetTime = 1.0f/60.0f;
 
-enum GameStates
-{
-    MENU,
-    GAME,
-    UPGRADE
-};
-
-GameStates currentState = GAME;
-std::map<GameStates, Scene*> scenes;
-Scene* curScene;
-
-void ChangeScene(GameStates newState)
-{
-	auto loc = scenes.find(newState);
-	if (loc != scenes.end())
-	{
-		curScene = loc->second;
-	}
-	else
-	{
-		std::cout << "Error: Invalid GameState" << std::endl;
-	}
-}
-
 void Update(float dt)
 {
-	curScene->Update(dt);
+	GameManager::shared_instance().curScene->Update(dt);
 }
 
 void Render(sf::RenderWindow* rw)
 {
-	curScene->Render(rw);
+	GameManager::shared_instance().curScene->Render(rw);
 }
 
 int main()
@@ -64,15 +40,11 @@ int main()
 	window.setView(camera);
 
 
-
-
 	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
 	std::chrono::high_resolution_clock::time_point curTime = std::chrono::high_resolution_clock::now();
 
-	Scene* newScene = new Level("Resources/SceneData/testgame.txt");
-	scenes[GAME] = newScene;
-
-	ChangeScene(GAME);
+	GameManager::shared_instance().CreateScenes();
+	GameManager::shared_instance().ChangeScene(GameManager::shared_instance().GAME);
 
 	float timer = 0;
 

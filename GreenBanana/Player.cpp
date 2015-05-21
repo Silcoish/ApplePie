@@ -31,6 +31,8 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
+	if (dt > 0.2)
+		return;
 	animations.Update(dt);
 
 	
