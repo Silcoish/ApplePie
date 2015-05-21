@@ -14,10 +14,11 @@ public:
 	//sf::Text GetString() { return text.getString; };
 	//sf::Vector2f GetPosition() { return text.getPosition(); };
 	
-	void SetPosition(sf::Vector2f newPos) { text.setPosition(newPos); };
+	sf::Text text;
+	void SetPosition(sf::Vector2f newPos) { position = newPos; };
+	sf::Vector2f GetPosition() { return position; }
 	virtual void Render(sf::RenderWindow* window);
 	void Update(float dt);
-	sf::Text text;
 
 protected:
 	std::string name;
