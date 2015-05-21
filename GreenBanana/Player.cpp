@@ -167,6 +167,23 @@ void Player::Update(float dt)
 		isGrounded = true;
 	}
 
+	//Rotate Sprite
+	if (abs(velocity.x) > 0)
+	{
+		animations.SwitchAnimations("walk");
+	}
+
+
+
+	//Set Anmiations
+	if (abs(velocity.x) > 0)
+	{
+		animations.SwitchAnimations("walk");
+	}
+	else
+	{
+		animations.SwitchAnimations("walk");
+	}
 
 	position += velocity;
 
