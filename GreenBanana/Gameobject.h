@@ -21,6 +21,7 @@ public:
 	// Methods
 	virtual void Update(float dt) = 0;
 	virtual void Render(sf::RenderWindow* rw);
+	void ResetObject();
 
 	sf::Vector2f GetPosition() { return position; };
 	void SetPosition(sf::Vector2f newPos) { position = newPos; };
@@ -49,6 +50,8 @@ public:
 
 	Scene* GetCurrentScene(){ return curScene; }
 	void SetCurrentScene(Scene* sc){ curScene = sc; }
+
+
 
 	void ScaleSprites(std::map<std::string, Animation>& anims, float scale);
 	void ScaleSprites(std::map<std::string, Animation>& anims, sf::Vector2f newSize);

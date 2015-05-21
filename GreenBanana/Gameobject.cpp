@@ -42,6 +42,12 @@ void Gameobject::Update(float dt)
 	
 }
 
+void Gameobject::ResetObject()
+{
+
+
+}
+
 void Gameobject::Render(sf::RenderWindow* rw)
 {
 	collider->center = position + sf::Vector2f(animations.curSprite->width / 2, animations.curSprite->height / 2);
