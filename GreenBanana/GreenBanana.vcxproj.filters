@@ -84,7 +84,7 @@
     <ClCompile Include="Hill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bag.cpp">
+    <ClCompile Include="Spike.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,7 +167,7 @@
     <ClInclude Include="Hill.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bag.h">
+    <ClInclude Include="Spike.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
