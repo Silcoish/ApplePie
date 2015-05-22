@@ -16,19 +16,19 @@ Rain::Rain(std::string type, std::string name, float x, float y, bool worldSpace
 
 	int i = (std::rand() % 4) + 1;
 	std::stringstream ss;
-	ss << "Resources/Objects/Rain_";
+	ss << "Resources/Objects/Rain/Rain_";
 	ss << i;
 	ss << ".png";
 
 	Animation rain;
-	rain.sprites = loader.Load("Resources/Objects/HealthObjects/sugar.png", 100, 100, 1);
+	rain.sprites = loader.Load(ss.str(), 180, 220, 1);
 	rain.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
 	rain.globalSpeed = 0.02;
 	rain.nextAnimation = "rain";
 	animations.animations["rain"] = rain;
 
-	int j = (std::rand() % 8) + 1;
-	ScaleSprites(animations.animations, (1 - ((float)j/10)));
+	int j = (std::rand() % 6) + 5;
+	ScaleSprites(animations.animations, (((float)j/25)));
 
 	animations.SwitchAnimations("rain");
 
