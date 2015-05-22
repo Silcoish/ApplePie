@@ -21,7 +21,7 @@ Bag::Bag(std::string type, std::string name, float x, float y, bool worldSpace, 
 	bag.nextAnimation = "bag";
 	animations.animations["bag"] = bag;
 
-	ScaleSprites(animations.animations, sf::Vector2f(70, 60));
+	ScaleSprites(animations.animations, sf::Vector2f(140, 120));
 
 	animations.SwitchAnimations("bag");
 

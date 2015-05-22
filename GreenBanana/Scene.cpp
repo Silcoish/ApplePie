@@ -9,6 +9,8 @@
 #include "Splenda.h"
 #include "Hill.h"
 #include "Spike.h"
+#include "Bag.h"
+#include "Candy.h"
 #include "LevelBackground.h"
 #include "EndGoal.h"
 
@@ -148,6 +150,28 @@ void Scene::Update(float dt)
 				spike->SetCurrentScene(this);
 				currentObject = spike;
 				objectsInScene.push_back(spike);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		{
+			if (currentObject == nullptr)
+			{
+				Bag* bag = new Bag("bag", "bag", pos.x, pos.y, 0, 1, 0);
+				bag->SetCurrentScene(this);
+				currentObject = bag;
+				objectsInScene.push_back(bag);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			if (currentObject == nullptr)
+			{
+				Candy* candy = new Candy("candy", "candy", pos.x, pos.y, 1, 1, 0);
+				candy->SetCurrentScene(this);
+				currentObject = candy;
+				objectsInScene.push_back(candy);
 			}
 		}
 
@@ -409,6 +433,18 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		EndGoal* endGoal = new EndGoal(type, name, x, y, worldSpace, isStatic, depth);
 		endGoal->SetCurrentScene(this);
 		objectsInScene.push_back(endGoal);
+	}
+	else if (type == "Bag" || type == "bag")
+	{
+		Bag* bag = new Bag(type, name, x, y, worldSpace, isStatic, depth);
+		bag->SetCurrentScene(this);
+		objectsInScene.push_back(bag);
+	}
+	else if (type == "Candy" || type == "candy")
+	{
+		Candy* candy = new Candy(type, name, x, y, worldSpace, isStatic, depth);
+		candy->SetCurrentScene(this);
+		objectsInScene.push_back(candy);
 	}
 
 }
