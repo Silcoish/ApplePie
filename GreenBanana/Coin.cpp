@@ -1,4 +1,5 @@
 #include "Coin.h"
+#include "GameManager.h"
 
 
 Coin::Coin(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
@@ -49,4 +50,24 @@ void Coin::ResetObject()
 {
 	sf::Vector2f pos = GetStartPosition();
 	SetPosition(pos);
+	switch (GameManager::shared_instance().upgradeData.CollectionArea)
+	{
+	case 1:
+		GetCollider()->size.x = GetCollider()->size.x * 1.3;
+		GetCollider()->size.x = GetCollider()->size.y * 1.3;
+		break;
+
+	case 2:
+		GetCollider()->size.x = GetCollider()->size.x * 1.3;
+		GetCollider()->size.x = GetCollider()->size.y * 1.3;
+		break;
+
+	case 3:
+		GetCollider()->size.x = GetCollider()->size.x * 1.3;
+		GetCollider()->size.x = GetCollider()->size.y * 1.3;
+		break;
+
+	default:
+		break;
+	}
 }

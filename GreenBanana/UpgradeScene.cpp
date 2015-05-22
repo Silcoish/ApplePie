@@ -148,7 +148,7 @@ void UpgradeScene::SceneLogic(float dt)
 			{
 				GameManager::shared_instance().upgradeData.CollectionArea += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.CollectionAreaCost;
-				GameManager::shared_instance().upgradeData.CollectionArea *= 1.5f;
+				GameManager::shared_instance().upgradeData.CollectionAreaCost *= 1.5f;
 			}
 		}
 	}
