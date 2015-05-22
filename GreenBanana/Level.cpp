@@ -13,10 +13,14 @@ Level::Level(std::string filePath)
 
 
 	clockText = new TextObject("text", "Clock_001", 420, -450, 0, 1, 100);
-	clockText->text.setScale(sf::Vector2f(1.5, 1.5));
+	clockText->text.setScale(sf::Vector2f(2, 1.5));
 	clockText->text.setColor(sf::Color::Blue);
 	objectsInScene.push_back(clockText);
 
+	bagText = new TextObject("text", "bagText", -450, -300, 0, 1, 100);
+	bagText->text.setScale(sf::Vector2f(3, 3));
+	bagText->text.setColor(sf::Color::Blue);
+	objectsInScene.push_back(bagText);
 
 	GameManager::shared_instance().upgradeData.clock = 10 + GameManager::shared_instance().upgradeData.clockSpeed * 5;
 	std::stringstream ss;
@@ -53,6 +57,11 @@ void Level::SceneLogic(float dt)
 	ss.precision(2);
 
 	clockText->text.setString("Clock: " + ss.str());
+
+
+
+	bagText->text.setString(std::to_string(GameManager::shared_instance().upgradeData.coins));
+
 }
 
 void Level::ResetScene()

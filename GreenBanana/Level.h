@@ -14,6 +14,7 @@ public:
 	void ResetScene();
 
 	TextObject* clockText;
+	TextObject* bagText;
 
 	std::vector<Gameobject*> rainObjects;
 	float timerRain = 0;

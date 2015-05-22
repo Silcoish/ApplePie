@@ -272,6 +272,7 @@ void Player::Update(float dt)
 
 			if (GameManager::shared_instance().upgradeData.clock <= 0)
 			{
+				GameManager::shared_instance().upgradeData.clock = 0;
 				isDead = true;
 			}
 		}
@@ -331,7 +332,6 @@ void Player::Render(sf::RenderWindow* rw)
 
 void Player::ResetObject()
 {
-
 	walkSpeed = 400 + (100 * GameManager::shared_instance().upgradeData.moveSpeed);
 	jumpTime = 0.3 + (0.05 * GameManager::shared_instance().upgradeData.jumpHeight);
 	isDead = false;
@@ -339,4 +339,5 @@ void Player::ResetObject()
 	animations.SwitchAnimations("sleep");
 	position = startPosition;
 	health = 20;
+	UpdateHealthObjects(health);
 }
