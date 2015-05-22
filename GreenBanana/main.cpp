@@ -54,7 +54,7 @@ int main()
 	
 
 	GameManager::shared_instance().CreateScenes();
-	GameManager::shared_instance().ChangeScene(GameManager::shared_instance().GAME);
+	GameManager::shared_instance().ChangeScene(GameManager::shared_instance().MENU);
 
 	float timer = 0;
 

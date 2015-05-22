@@ -16,7 +16,7 @@ public:
 	std::vector<Gameobject*> objectsInScene;
 	Sprite* background = NULL;
 
-	void Update(float dt);//General Data that all scenes run
+	virtual void Update(float dt);//General Data that all scenes run
 	virtual void Render(sf::RenderWindow* rw);//Render that all scenes run
 	virtual void SceneLogic(float dt) = 0; //Individual Scene Updates
 

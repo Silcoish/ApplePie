@@ -34,6 +34,11 @@ void MenuScene::Render(sf::RenderWindow* window)
 	}
 }
 
+void MenuScene::Update(float dt)
+{
+	SceneLogic(dt);
+}
+
 void MenuScene::SceneLogic(float dt)
 {
 	if (counter > flickertime)
@@ -47,10 +52,6 @@ void MenuScene::SceneLogic(float dt)
 	}
 	else
 		counter += dt;
-
-
-
-
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))

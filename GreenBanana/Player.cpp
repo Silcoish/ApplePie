@@ -62,6 +62,8 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	isGrounded = true;
 	isFalling = false;
 	timerJump = 0;
+
+	ResetObject();
 }
 
 Player::~Player()
@@ -219,7 +221,7 @@ void Player::Update(float dt)
 					invincibleCounter = 0;
 				}
 			}
-			else if ((*it)->GetType() == "EndGoal" && (*it)->GetCollider()->size.x > 0)
+			else if ((*it)->GetType() == "endGoal" && (*it)->GetCollider()->size.x > 0)
 			{
 				GameManager::shared_instance().ChangeScene(GameManager::shared_instance().MENU);
 			}

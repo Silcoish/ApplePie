@@ -62,6 +62,9 @@ void Level::SceneLogic(float dt)
 
 	bagText->text.setString(std::to_string(GameManager::shared_instance().upgradeData.coins));
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		GameManager::shared_instance().upgradeData.coins += 10000;
+
 }
 
 void Level::ResetScene()

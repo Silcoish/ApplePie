@@ -7,6 +7,7 @@ EndGoal::EndGoal(std::string type, std::string name, float x, float y, bool worl
 	SetType(type);
 	SetName(name);
 	SetPosition(sf::Vector2f(x, y));
+	SetStartPosition(GetPosition());
 	SetworldSpace(worldSpace);
 	SetIsStatic(isStatic);
 	SetDepth(depth);

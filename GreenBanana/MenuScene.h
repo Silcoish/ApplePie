@@ -8,6 +8,7 @@ public:
 	MenuScene(std::string filepath);
 	~MenuScene();
 
+	virtual void Update(float dt);
 	void Render(sf::RenderWindow* window);
 	virtual void SceneLogic(float dt);
 

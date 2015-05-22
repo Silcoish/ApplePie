@@ -18,7 +18,7 @@ Splenda::Splenda(std::string type, std::string name, float x, float y, bool worl
 	animations.animations["walk"] = walk;
 	animations.SwitchAnimations("walk");
 
-	startPos = sf::Vector2f(x, y);
+	//startPos = sf::Vector2f(x, y);
 
 	collider = new BoxCollider();
 	collider->size = sf::Vector2f(130, 140);
