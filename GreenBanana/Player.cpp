@@ -219,6 +219,15 @@ void Player::Update(float dt)
 					invincibleCounter = 0;
 				}
 			}
+			else if ((*it)->GetType() == "spike" && (*it)->GetCollider()->size.x > 0)
+			{
+				if (invincibleCounter >= invincibleTimer)
+				{
+					health -= 4;
+					UpdateHealthObjects(health);
+					invincibleCounter = 0;
+				}
+			}
 		}
 
 		//Rotate Sprite

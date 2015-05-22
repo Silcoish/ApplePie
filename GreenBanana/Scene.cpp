@@ -9,6 +9,7 @@
 #include "Splenda.h"
 #include "Hill.h"
 #include "Spike.h"
+#include "Bag.h"
 #include "LevelBackground.h"
 
 void Scene::Update(float dt)
@@ -147,6 +148,17 @@ void Scene::Update(float dt)
 				spike->SetCurrentScene(this);
 				currentObject = spike;
 				objectsInScene.push_back(spike);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+		{
+			if (currentObject == nullptr)
+			{
+				Bag* bag = new Bag("bag", "bag", pos.x, pos.y, 0, 1, 0);
+				bag->SetCurrentScene(this);
+				currentObject = bag;
+				objectsInScene.push_back(bag);
 			}
 		}
 
@@ -402,6 +414,12 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		Spike* spike = new Spike(type, name, x, y, worldSpace, isStatic, depth);
 		spike->SetCurrentScene(this);
 		objectsInScene.push_back(spike);
+	}
+	else if (type == "Bag" || type == "bag")
+	{
+		Bag* bag = new Bag(type, name, x, y, worldSpace, isStatic, depth);
+		bag->SetCurrentScene(this);
+		objectsInScene.push_back(bag);
 	}
 
 }

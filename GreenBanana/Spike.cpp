@@ -23,8 +23,8 @@ Spike::Spike(std::string type, std::string name, float x, float y, bool worldSpa
 	animations.SwitchAnimations("idle");
 
 	collider = new BoxCollider();
-	collider->size = sf::Vector2f(0, 0);
-	collider->isTrigger = true;
+	collider->size = sf::Vector2f(219, 190);
+	collider->isTrigger = false;
 }
 
 Spike::~Spike()
