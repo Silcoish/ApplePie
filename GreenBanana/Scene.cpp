@@ -7,6 +7,7 @@
 #include "Health.h"
 #include "Lollipop.h"
 #include "Splenda.h"
+#include "Hill.h"
 #include "LevelBackground.h"
 
 void Scene::Update(float dt)
@@ -123,6 +124,17 @@ void Scene::Update(float dt)
 				splenda->SetCurrentScene(this);
 				currentObject = splenda;
 				objectsInScene.push_back(splenda);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9))
+		{
+			if (currentObject == nullptr)
+			{
+				Hill* hill = new Hill("hill", "hill", pos.x, pos.y, 1, 1, 0);
+				hill->SetCurrentScene(this);
+				currentObject = hill;
+				objectsInScene.push_back(hill);
 			}
 		}
 
@@ -367,6 +379,12 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		splenda->SetCurrentScene(this);
 		objectsInScene.push_back(splenda);
 	}
+	else if (type == "Hill" || type == "hill")
+	{
+		Hill* hill = new Hill(type, name, x, y, worldSpace, isStatic, depth);
+		hill->SetCurrentScene(this);
+		objectsInScene.push_back(hill);
+	}
 
 }
 
@@ -485,7 +503,9 @@ void Scene::SceneLogic(float dt)
 
 }
 
+
 void Scene::ResetScene(){};
+
 
 void Scene::SortGameobjects(std::vector<Gameobject*>& gameObjects)
 {

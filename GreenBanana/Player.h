@@ -10,6 +10,7 @@ public:
 
 	void Update(float dt);
 	void Render(sf::RenderWindow* rw);
+	void ResetObject();
 
 private:
 	//Player Variables
@@ -27,6 +28,9 @@ private:
 
 	bool isDead = false;
 	float timerDeath = 0;
+
+	float invincibleTimer = 1;
+	float invincibleCounter = 1;
 };
 
 #endif

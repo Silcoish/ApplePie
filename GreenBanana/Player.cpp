@@ -13,6 +13,8 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	SetIsStatic(isStatic);
 	SetDepth(depth);
 
+	startPosition = sf::Vector2f(x, y);
+
 	SpritesheetLoader loader;
 
 	Animation idle;
@@ -58,8 +60,9 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	collider->size = sf::Vector2f(100,200);
 
 	health = 20;
-	walkSpeed = 400;
-	jumpTime = 0.3;
+	walkSpeed = 400 + (100 * GameManager::shared_instance().upgradeData.moveSpeed);
+	jumpTime = 0.3 + (0.05 * GameManager::shared_instance().upgradeData.jumpHeight);
+
 	isGrounded = true;
 	isFalling = false;
 	timerJump = 0;
@@ -93,6 +96,7 @@ void Player::Update(float dt)
 	if (dt > 0.2)
 		return;
 	animations.Update(dt);
+	invincibleCounter += dt;
 
 	std::string curAnimName = animations.curAnimation->name;
 
@@ -196,7 +200,26 @@ void Player::Update(float dt)
 
 				}
 				(*it)->GetAnimator().SwitchAnimations("healthDestroyed");
-				(*it)->GetCollider()->size = sf::Vector2f(0, 0);
+				//(*it)->GetCollider()->size = sf::Vector2f(0, 0);
+				(*it)->SetPosition(sf::Vector2f(5000 + std::rand() % 1000, 5000 + std::rand() % 1000));
+			}
+			else if ((*it)->GetType() == "trap" && (*it)->GetCollider()->size.x > 0)
+			{
+				if (invincibleCounter >= invincibleTimer)
+				{
+					health -= 4;
+					UpdateHealthObjects(health);
+					invincibleCounter = 0;
+				}
+			}
+			else if ((*it)->GetType() == "splenda" && (*it)->GetCollider()->size.x > 0)
+			{
+				if (invincibleCounter >= invincibleTimer)
+				{
+					health -= 4;
+					UpdateHealthObjects(health);
+					invincibleCounter = 0;
+				}
 			}
 		}
 
@@ -246,9 +269,8 @@ void Player::Update(float dt)
 		//Run CLock
 		if (curAnimName != "sleep")
 		{
-			GameManager::shared_instance().upgradeData.clock -= (dt * (6 - (health / 4)));
-			GameManager::shared_instance().globalClockSpeed = ((6 - (health / 4)));
-			std::cout << (6 - (health / 4)) << std::endl;
+			GameManager::shared_instance().globalClockSpeed = ((6 - (health / 4)) * 2) - 1;
+			GameManager::shared_instance().upgradeData.clock -= (dt * GameManager::shared_instance().globalClockSpeed);
 
 			if (GameManager::shared_instance().upgradeData.clock <= 0)
 			{
@@ -307,4 +329,10 @@ void Player::Render(sf::RenderWindow* rw)
 
 		rw->draw(line, 8, sf::Lines);
 	}
+}
+
+void Player::ResetObject()
+{
+	position = startPosition;
+	health = 20;
 }
