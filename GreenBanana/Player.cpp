@@ -60,8 +60,9 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	collider->size = sf::Vector2f(100,200);
 
 	health = 20;
-	walkSpeed = 400;
-	jumpTime = 0.3;
+	walkSpeed = 400 + (100 * GameManager::shared_instance().upgradeData.moveSpeed);
+	jumpTime = 0.3 + (0.05 * GameManager::shared_instance().upgradeData.jumpHeight);
+
 	isGrounded = true;
 	isFalling = false;
 	timerJump = 0;

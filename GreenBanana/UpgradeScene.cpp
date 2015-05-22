@@ -136,6 +136,7 @@ void UpgradeScene::SceneLogic(float dt)
 			{
 				GameManager::shared_instance().upgradeData.clockSpeed += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.clockSpeedCost;
+				GameManager::shared_instance().upgradeData.clockSpeedCost *= 1.5f;
 			}
 		}
 	}
@@ -147,6 +148,7 @@ void UpgradeScene::SceneLogic(float dt)
 			{
 				GameManager::shared_instance().upgradeData.CollectionArea += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.CollectionAreaCost;
+				GameManager::shared_instance().upgradeData.CollectionArea *= 1.5f;
 			}
 		}
 	}
@@ -158,6 +160,7 @@ void UpgradeScene::SceneLogic(float dt)
 			{
 				GameManager::shared_instance().upgradeData.moveSpeed += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.moveSpeedCost;
+				GameManager::shared_instance().upgradeData.moveSpeedCost *= 1.5f;
 			}
 		}
 	}
@@ -169,6 +172,7 @@ void UpgradeScene::SceneLogic(float dt)
 			{
 				GameManager::shared_instance().upgradeData.jumpHeight += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.jumpHeightCost;
+				GameManager::shared_instance().upgradeData.jumpHeightCost *= 1.5f;
 			}
 		}
 	}
