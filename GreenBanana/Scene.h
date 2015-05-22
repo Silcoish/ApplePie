@@ -22,14 +22,14 @@ public:
 	void Parse();
 	void CreateObject(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth);
 	void Unload();
-	void ResetScene();
+	virtual void ResetScene();
 
 	std::string GetName() { return name; };
 	std::string GetFilePath() { return filePath; };
 
 	void SetName(std::string newName) { name = newName; };
 	void SetFilePath(std::string newPath) { filePath = newPath; };
-	void SetBackground(std::string fileName) { background = new Sprite(); background->LoadTexture(fileName); }
+	//void SetBackground(std::string fileName) { background = new Sprite(); background->LoadTexture(fileName); }
 
 	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions);
 	bool CollisionCheck(BoxCollider* col, std::vector<Gameobject*>& out_allCollisions, sf::Vector2f& offset);

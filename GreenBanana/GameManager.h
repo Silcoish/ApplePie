@@ -10,7 +10,8 @@
 
 class GameManager
 {
-
+private:
+	std::map<std::string, sf::Texture*> textures;
 public:
 	static GameManager &shared_instance() { static GameManager game; return game; }
 	UpgradeData upgradeData;
@@ -23,6 +24,8 @@ public:
 	int globalClockSpeed = 1;
 	std::vector<Gameobject*> healthObjects;
 
+
+
 	enum GameStates
 	{
 		MENU,
@@ -32,6 +35,49 @@ public:
 	GameStates currentState = GAME;
 	std::map<GameStates, Scene*> scenes;
 	Scene* curScene;
+
+	sf::Texture* GetTexture(std::string filePath)
+	{
+		auto it = textures.find(filePath);
+
+		if (it != textures.end())
+		{
+			return textures[filePath];
+		}
+		else
+		{
+
+			sf::Texture* tex = new sf::Texture();
+
+			if (!tex->loadFromFile(filePath))
+			{
+				//Error
+				std::cout << "File Not Found: " << filePath << std::endl;
+				//texture = new sf::Texture();
+				//texture->create(32, 32);
+				//sf::Uint8* pixels = new sf::Uint8[32 * 32 * 4];
+
+				//for (size_t i = 0; i < 4096; i += 4)
+				//{
+				//	pixels[i] = 0;
+				//	pixels[i + 1] = 255;
+				//	pixels[i + 2] = 140;
+				//	pixels[i + 3] = 255;
+				//}
+				//texture->update(pixels);
+			}
+			textures[filePath] = tex;
+			
+			return tex;
+
+
+
+
+		}
+
+		
+
+	}
 
 	void ReloadScene(GameStates state)
 	{

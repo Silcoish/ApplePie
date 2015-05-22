@@ -1,12 +1,14 @@
 #include "SpritesheetLoader.h"
 #include <iostream>
+#include "GameManager.h"
 
 std::vector<Sprite*> SpritesheetLoader::Load(std::string filePath, int spriteWidth, int spriteHeight, int frames)
 {
 	std::vector<Sprite*> sprites;
 
 	Sprite* spritesheet = new Sprite();
-	spritesheet->LoadTexture(filePath);
+
+	spritesheet->LoadTexture(GameManager::shared_instance().GetTexture(filePath));
 
 	float f = 0;
 

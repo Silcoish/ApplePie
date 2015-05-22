@@ -25,28 +25,12 @@ Sprite::~Sprite()
 	delete texture;
 }
 
-void Sprite::LoadTexture(std::string fileLocation)
+void Sprite::LoadTexture(sf::Texture * txtxtx)
 {
-	if (!texture->loadFromFile(fileLocation))
-	{
-		//Error
-		std::cout << "File Not Found: " << fileLocation << std::endl;
+	
+	texture = txtxtx;
 
-		texture = new sf::Texture();
-		texture->create(32, 32);
-		sf::Uint8* pixels = new sf::Uint8[32 * 32 * 4];
-
-		for (size_t i = 0; i < 4096; i += 4)
-		{
-			pixels[i] = 0;
-			pixels[i + 1] = 255;
-			pixels[i + 2] = 140;
-			pixels[i + 3] = 255;
-		}
-		texture->update(pixels);
-	}
-
-	sprite->setTexture(*texture);
+	sprite->setTexture(*txtxtx);
 
 	width = texture->getSize().x;
 	height = texture->getSize().y;
