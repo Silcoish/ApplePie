@@ -8,6 +8,15 @@ UpgradeScene::UpgradeScene(std::string filepath)
 	SetFilePath(filepath);
 	Parse();
 
+	/*buffer;
+	if(!buffer.loadFromFile("Resources/Audio/click.wav"))
+	{
+		std::cout << "Cannot load Resources/Audio/click.wav" << std::endl;
+	}
+
+	sound;
+	sound.setBuffer(buffer);*/
+
 	coinsText = new TextObject("text", "Coins", -120, -340, 0, 1, 100);
 	coinsText->text.setScale(sf::Vector2f(2, 2));
 	coinsText->text.setColor(sf::Color::Blue);
@@ -137,6 +146,7 @@ void UpgradeScene::SceneLogic(float dt)
 				GameManager::shared_instance().upgradeData.clockSpeed += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.clockSpeedCost;
 				GameManager::shared_instance().upgradeData.clockSpeedCost *= 1.5f;
+				//sound.play();
 			}
 		}
 	}
@@ -149,6 +159,7 @@ void UpgradeScene::SceneLogic(float dt)
 				GameManager::shared_instance().upgradeData.CollectionArea += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.CollectionAreaCost;
 				GameManager::shared_instance().upgradeData.CollectionAreaCost *= 1.5f;
+				//sound.play();
 			}
 		}
 	}
@@ -161,6 +172,7 @@ void UpgradeScene::SceneLogic(float dt)
 				GameManager::shared_instance().upgradeData.moveSpeed += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.moveSpeedCost;
 				GameManager::shared_instance().upgradeData.moveSpeedCost *= 1.5f;
+				//sound.play();
 			}
 		}
 	}
@@ -173,6 +185,7 @@ void UpgradeScene::SceneLogic(float dt)
 				GameManager::shared_instance().upgradeData.jumpHeight += 1;
 				GameManager::shared_instance().upgradeData.coins -= GameManager::shared_instance().upgradeData.jumpHeightCost;
 				GameManager::shared_instance().upgradeData.jumpHeightCost *= 1.5f;
+				//sound.play();
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+//#include "SFML/Audio.hpp"
 
 class UpgradeScene :
 	public Scene
@@ -24,6 +25,9 @@ public:
 	TextObject* buyMoveText = NULL;
 	TextObject* buyJumpText = NULL;
 	TextObject* buyMagnetText = NULL;
+
+	//sf::SoundBuffer buffer;
+	//sf::Sound sound;
 
 private:
 	InputMapper* inputManager = &InputMapper::shared_instance();

@@ -10,6 +10,7 @@
 #include "Hill.h"
 #include "Spike.h"
 #include "Bag.h"
+#include "Candy.h"
 #include "LevelBackground.h"
 
 void Scene::Update(float dt)
@@ -159,6 +160,17 @@ void Scene::Update(float dt)
 				bag->SetCurrentScene(this);
 				currentObject = bag;
 				objectsInScene.push_back(bag);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		{
+			if (currentObject == nullptr)
+			{
+				Candy* candy = new Candy("candy", "candy", pos.x, pos.y, 1, 1, 0);
+				candy->SetCurrentScene(this);
+				currentObject = candy;
+				objectsInScene.push_back(candy);
 			}
 		}
 
@@ -420,6 +432,12 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		Bag* bag = new Bag(type, name, x, y, worldSpace, isStatic, depth);
 		bag->SetCurrentScene(this);
 		objectsInScene.push_back(bag);
+	}
+	else if (type == "Candy" || type == "candy")
+	{
+		Candy* candy = new Candy(type, name, x, y, worldSpace, isStatic, depth);
+		candy->SetCurrentScene(this);
+		objectsInScene.push_back(candy);
 	}
 
 }
