@@ -9,6 +9,7 @@
 #include "Level.h"
 #include "UpgradeScene.h"
 #include "InputManager.h"
+#include "LoadingScreen.h"
 
 using namespace std::chrono;
 
@@ -31,6 +32,12 @@ int main()
     sf::RenderWindow window(sf::VideoMode(720, 480), "Green Banana!");
 	GameManager::shared_instance().rw = &window;
 
+	LoadingScreen* loadingScreen = new LoadingScreen();
+	GameManager::shared_instance().curScene = loadingScreen;
+	Render(&window);
+	window.display();
+
+
 	sf::View camera;
 
 	//Set Up Camera
@@ -44,6 +51,7 @@ int main()
 
 	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
 	std::chrono::high_resolution_clock::time_point curTime = std::chrono::high_resolution_clock::now();
+	
 
 	GameManager::shared_instance().CreateScenes();
 	GameManager::shared_instance().ChangeScene(GameManager::shared_instance().GAME);
@@ -107,6 +115,7 @@ int main()
 
 		
     }
+	
 
     return 0;
 }
