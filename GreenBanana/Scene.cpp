@@ -175,6 +175,17 @@ void Scene::Update(float dt)
 			}
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+		{
+			if (currentObject == nullptr)
+			{
+				EndGoal* endGoal = new EndGoal("endGoal", "endGoal", pos.x, pos.y, 1, 1, 0);
+				endGoal->SetCurrentScene(this);
+				currentObject = endGoal;
+				objectsInScene.push_back(endGoal);
+			}
+		}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			GameManager::shared_instance().cameraPos.x -= GameManager::shared_instance().cameraMoveSpeed * dt;
 
@@ -386,7 +397,7 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		newObject->SetCurrentScene(this);
 		objectsInScene.push_back(newObject);
 	}
-	else if (type == "Trap" || type == "Trap")
+	else if (type == "trap" || type == "Trap")
 	{
 		Trap* newObject = new Trap(type, name, x, y, worldSpace, isStatic, depth);
 		newObject->SetCurrentScene(this);
@@ -570,23 +581,27 @@ void Scene::ResetScene(){};
 
 void Scene::SortGameobjects(std::vector<Gameobject*>& gameObjects)
 {
-	bool somethingChanged = false;
-
-	do
+	if (gameObjects.size() > 0)
 	{
-		somethingChanged = false;
-		for (size_t i = 0; i < gameObjects.size() - 1; i++)
+	
+		bool somethingChanged = false;
+
+		do
 		{
-			if (gameObjects[i]->GetDepth() > gameObjects[i + 1]->GetDepth())
+			somethingChanged = false;
+			for (size_t i = 0; i < gameObjects.size() - 1; i++)
 			{
-				Gameobject* temp = gameObjects[i];
+				if (gameObjects[i]->GetDepth() > gameObjects[i + 1]->GetDepth())
+				{
+					Gameobject* temp = gameObjects[i];
 
-				gameObjects[i] = gameObjects[i + 1];
+					gameObjects[i] = gameObjects[i + 1];
 
-				gameObjects[i + 1] = temp;
+					gameObjects[i + 1] = temp;
 
-				somethingChanged = true;
+					somethingChanged = true;
+				}
 			}
-		}
-	} while (somethingChanged);
+		} while (somethingChanged);
+	}
 }

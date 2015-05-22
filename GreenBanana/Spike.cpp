@@ -20,10 +20,12 @@ Spike::Spike(std::string type, std::string name, float x, float y, bool worldSpa
 	idle.nextAnimation = "idle";
 	animations.animations["idle"] = idle;
 
+	ScaleSprites(animations.animations, sf::Vector2f(130,130));
+
 	animations.SwitchAnimations("idle");
 
 	collider = new BoxCollider();
-	collider->size = sf::Vector2f(219, 190);
+	collider->size = sf::Vector2f(130, 130);
 	collider->isTrigger = false;
 }
 

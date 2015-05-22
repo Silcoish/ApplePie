@@ -11,19 +11,20 @@ EndGoal::EndGoal(std::string type, std::string name, float x, float y, bool worl
 	SetIsStatic(isStatic);
 	SetDepth(depth);
 
-	collider = new BoxCollider();
-	collider->size = sf::Vector2f(230, 443);
-	collider->isTrigger = true;
 
 	SpritesheetLoader loader;
 	Animation jump;
 	jump.name = "jump";
-	jump.sprites = loader.Load("Resources/Animations/Player/sleep.png", 160, 224, 11);
-	jump.endEvent = Animation::AnimationEndEvent::Loop;
+	jump.sprites = loader.Load("Resources/Objects/Alarm.png", 615, 772, 1);
+	jump.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
 	jump.globalSpeed = 0.02;
 	animations.animations["jump"] = jump;
 
 	animations.SwitchAnimations("jump");
+
+	collider = new BoxCollider();
+	collider->size = sf::Vector2f(615, 772);
+	collider->isTrigger = true;
 
 }
 
@@ -34,11 +35,12 @@ EndGoal::~EndGoal()
 
 void EndGoal::Update(float dt)
 {
+	animations.Update(dt);
 
+	collider->center = position + sf::Vector2f(animations.curSprite->width / 2, animations.curSprite->height / 2);
 }
 void EndGoal::Render(sf::RenderWindow* window)
 {
-	collider->center = position + sf::Vector2f(75, 100);
 
 	animations.curSprite->sprite->setPosition(GetPosition());
 
