@@ -1,4 +1,5 @@
 levelBackground,levelBackground,-720,-480,0,1,-100
+
 rain,rain,300,-960,1,0,-10
 rain,rain,1700,-920,1,0,-10
 rain,rain,1700,-880,1,0,-10
@@ -144,6 +145,7 @@ floor,floor,1880,-470,1,1,0
 floor,floor,2010,-470,1,1,0
 floor,floor,2140,-470,1,1,0
 coin,coin,-340,-70,1,1,0
+EndGoal, endGoal, -240, -70,1,1,0
 coin,coin,300,-320,1,1,0
 coin,coin,800,-520,1,1,0
 coin,coin,1360,-660,1,1,0

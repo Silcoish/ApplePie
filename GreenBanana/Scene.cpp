@@ -10,6 +10,7 @@
 #include "Hill.h"
 #include "Spike.h"
 #include "LevelBackground.h"
+#include "EndGoal.h"
 
 void Scene::Update(float dt)
 {
@@ -402,6 +403,12 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		Spike* spike = new Spike(type, name, x, y, worldSpace, isStatic, depth);
 		spike->SetCurrentScene(this);
 		objectsInScene.push_back(spike);
+	}
+	else if (type == "EndGoal" || type == "endGoal")
+	{
+		EndGoal* endGoal = new EndGoal(type, name, x, y, worldSpace, isStatic, depth);
+		endGoal->SetCurrentScene(this);
+		objectsInScene.push_back(endGoal);
 	}
 
 }

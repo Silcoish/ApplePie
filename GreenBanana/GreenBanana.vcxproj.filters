@@ -87,6 +87,12 @@
     <ClCompile Include="Spike.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EndGoal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sprite.h">
@@ -168,6 +174,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Spike.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EndGoal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

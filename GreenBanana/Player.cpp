@@ -219,6 +219,10 @@ void Player::Update(float dt)
 					invincibleCounter = 0;
 				}
 			}
+			else if ((*it)->GetType() == "EndGoal" && (*it)->GetCollider()->size.x > 0)
+			{
+				GameManager::shared_instance().ChangeScene(GameManager::shared_instance().MENU);
+			}
 		}
 
 		//Rotate Sprite
