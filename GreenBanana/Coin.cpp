@@ -36,7 +36,6 @@ Coin::Coin(std::string type, std::string name, float x, float y, bool worldSpace
 	collider->isTrigger = true;
 }
 
-
 Coin::~Coin()
 {
 }
@@ -48,5 +47,6 @@ void Coin::Update(float dt)
 
 void Coin::ResetObject()
 {
-	SetPosition(GetStartPosition());
+	sf::Vector2f pos = GetStartPosition();
+	SetPosition(pos);
 }

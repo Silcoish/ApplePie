@@ -21,13 +21,13 @@ public:
 	// Methods
 	virtual void Update(float dt) = 0;
 	virtual void Render(sf::RenderWindow* rw);
-	void ResetObject();
+	virtual void ResetObject();
 
 	sf::Vector2f GetPosition() { return position; };
 	void SetPosition(sf::Vector2f newPos) { position = newPos; };
 
 	sf::Vector2f GetStartPosition() { return startPosition; };
-	void SetStartPosition(sf::Vector2f newPos) { position = newPos; };
+	void SetStartPosition(sf::Vector2f newPos) { startPosition = newPos; };
 	
 	bool GetIsStatic() { return isStatic; };
 	void SetIsStatic(bool value) { isStatic = value; };

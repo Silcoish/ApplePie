@@ -59,10 +59,6 @@ Player::Player(std::string type, std::string name, float x, float y, bool worldS
 	collider = new BoxCollider();
 	collider->size = sf::Vector2f(100,200);
 
-	health = 20;
-	walkSpeed = 400 + (100 * GameManager::shared_instance().upgradeData.moveSpeed);
-	jumpTime = 0.3 + (0.05 * GameManager::shared_instance().upgradeData.jumpHeight);
-
 	isGrounded = true;
 	isFalling = false;
 	timerJump = 0;
@@ -199,9 +195,11 @@ void Player::Update(float dt)
 					std::cout << GameManager::shared_instance().upgradeData.coins << std::endl;
 
 				}
-				(*it)->GetAnimator().SwitchAnimations("healthDestroyed");
+				//(*it)->GetAnimator().SwitchAnimations("healthDestroyed");
 				//(*it)->GetCollider()->size = sf::Vector2f(0, 0);
-				(*it)->SetPosition(sf::Vector2f(5000 + std::rand() % 1000, 5000 + std::rand() % 1000));
+				(*it)->SetPosition(sf::Vector2f(5000 , 5000));
+
+
 			}
 			else if ((*it)->GetType() == "trap" && (*it)->GetCollider()->size.x > 0)
 			{
@@ -333,6 +331,12 @@ void Player::Render(sf::RenderWindow* rw)
 
 void Player::ResetObject()
 {
+
+	walkSpeed = 400 + (100 * GameManager::shared_instance().upgradeData.moveSpeed);
+	jumpTime = 0.3 + (0.05 * GameManager::shared_instance().upgradeData.jumpHeight);
+	isDead = false;
+	timerDeath = 0;
+	animations.SwitchAnimations("sleep");
 	position = startPosition;
 	health = 20;
 }
