@@ -95,6 +95,7 @@ void Player::Update(float dt)
 	if (dt > 0.2)
 		return;
 	animations.Update(dt);
+	invincibleCounter += dt;
 
 	std::string curAnimName = animations.curAnimation->name;
 
@@ -203,13 +204,21 @@ void Player::Update(float dt)
 			}
 			else if ((*it)->GetType() == "trap" && (*it)->GetCollider()->size.x > 0)
 			{
-				health -= 4;
-				UpdateHealthObjects(health);
+				if (invincibleCounter >= invincibleTimer)
+				{
+					health -= 4;
+					UpdateHealthObjects(health);
+					invincibleCounter = 0;
+				}
 			}
 			else if ((*it)->GetType() == "splenda" && (*it)->GetCollider()->size.x > 0)
 			{
-				health -= 4;
-				UpdateHealthObjects(health);
+				if (invincibleCounter >= invincibleTimer)
+				{
+					health -= 4;
+					UpdateHealthObjects(health);
+					invincibleCounter = 0;
+				}
 			}
 		}
 
