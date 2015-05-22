@@ -1,7 +1,7 @@
-#include "Hill.h"
+#include "Spike.h"
 #include "GameManager.h"
 
-Hill::Hill(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
+Spike::Spike(std::string type, std::string name, float x, float y, bool worldSpace, bool isStatic, int depth)
 {
 	SetType(type);
 	SetName(name);
@@ -14,7 +14,7 @@ Hill::Hill(std::string type, std::string name, float x, float y, bool worldSpace
 	SpritesheetLoader loader;
 
 	Animation idle;
-	idle.sprites = loader.Load("Resources/Objects/Environment/Hill.png", 1080, 281, 1);
+	idle.sprites = loader.Load("Resources/Objects/Environment/Spike.png", 219, 190, 1);
 	idle.endEvent = Animation::AnimationEndEvent::HoldLastFrame;
 	idle.globalSpeed = 0.02;
 	idle.nextAnimation = "idle";
@@ -27,11 +27,11 @@ Hill::Hill(std::string type, std::string name, float x, float y, bool worldSpace
 	collider->isTrigger = true;
 }
 
-Hill::~Hill()
+Spike::~Spike()
 {
 }
 
-void Hill::Update(float dt)
+void Spike::Update(float dt)
 {
 
 }

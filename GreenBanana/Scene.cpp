@@ -8,6 +8,7 @@
 #include "Lollipop.h"
 #include "Splenda.h"
 #include "Hill.h"
+#include "Spike.h"
 #include "LevelBackground.h"
 
 void Scene::Update(float dt)
@@ -135,6 +136,17 @@ void Scene::Update(float dt)
 				hill->SetCurrentScene(this);
 				currentObject = hill;
 				objectsInScene.push_back(hill);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
+		{
+			if (currentObject == nullptr)
+			{
+				Spike* spike = new Spike("spike", "spike", pos.x, pos.y, 1, 1, 0);
+				spike->SetCurrentScene(this);
+				currentObject = spike;
+				objectsInScene.push_back(spike);
 			}
 		}
 
@@ -384,6 +396,12 @@ void Scene::CreateObject(std::string type, std::string name, float x, float y, b
 		Hill* hill = new Hill(type, name, x, y, worldSpace, isStatic, depth);
 		hill->SetCurrentScene(this);
 		objectsInScene.push_back(hill);
+	}
+	else if (type == "Spike" || type == "spike")
+	{
+		Spike* spike = new Spike(type, name, x, y, worldSpace, isStatic, depth);
+		spike->SetCurrentScene(this);
+		objectsInScene.push_back(spike);
 	}
 
 }
